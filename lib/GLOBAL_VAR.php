@@ -1,0 +1,3 @@
+<?php
+	$GLOBALS['FISCAL_YEAR'] = 2017;
+?>
