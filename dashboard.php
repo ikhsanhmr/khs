@@ -126,12 +126,10 @@ include_once('lib/head.php');
 									where SKKI.AREA_kode = SKKO.AREA_kode`;
 								}
 
-								/*	
-								if ($_SESSION['area'] != 54000){
-									$area = $_SESSION['area'];
-									$query = $query ." and SKKI.area_kode = $area";
-								}
-								*/
+								// if ($_SESSION['area'] != 54000){
+								// 	$area = $_SESSION['area'];
+								// 	$query = $query ." and SKKI.area_kode = $area";
+								// }
 			
 								$query = $query ." order by area_nama";
 								$resultQuery = mysqli_query($mysqli, $query);

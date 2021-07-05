@@ -55,7 +55,7 @@ include_once("lib/check.php"); ?>
                                     <tbody>
                                         <?php
 
-                                        $count = "SELECT * from  tb_rating";
+                                        $count = "SELECT * from tb_rating";
                                         $count_res = mysqli_query($mysqli, $count);
                                         $r = mysqli_fetch_row($count_res);
                                         $numrows = $r[0];

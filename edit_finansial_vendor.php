@@ -48,7 +48,7 @@ include_once("lib/GLOBAL_VAR.php");
                                 <form role="form">
                                     <div class="form-group">
                                         <label for="Area">Area</label>
-
+                                        <input type="text" class="form-control" placeholder="Area" name="area">
                                     </div>
 
                                     <div class="form-group">
@@ -205,8 +205,7 @@ include_once("lib/GLOBAL_VAR.php");
 
                                             $sql = "SELECT A.VENDOR_ID,  A.VENDOR_NAMA, b.RATING_LAPORAN_AUDIT, 
 										b.FIN_LIMIT FROM tb_vendor a, tb_fin_vendor B  WHERE a.VENDOR_ID=b.VENDOR_ID
-										and A.VENDOR_NAMA like '%$vendor%''
-									";
+										and A.VENDOR_NAMA like '%$vendor%'";
                                         }
 
                                         $resultQuery = mysqli_query($mysqli, $sql);

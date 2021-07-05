@@ -1,5 +1,6 @@
 <?php session_start();
 include_once("lib/head.php");
+include_once("lib/config.php");
 include_once("lib/check.php"); ?>
 
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -121,7 +122,7 @@ include_once("lib/check.php"); ?>
                                         // the offset of the list, based on current page
                                         $offset = ($currentpage - 1) * $rowsperpage;
 
-                                        $sql = "SELECT paket_jenis, paket_deskripsi, satuan, paket_deskripsi2 from tb_paket";
+                                        $sql = "SELECT PAKET_JENIS, PAKET_DESKRIPSI, SATUAN, PAKET_DESKRIPSI2 from tb_paket";
                                         //echo  $sql;
                                         $resultQuery = mysqli_query($mysqli, $sql);
                                         while ($rows = mysqli_fetch_row($resultQuery)) {

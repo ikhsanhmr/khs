@@ -205,7 +205,6 @@ include_once("lib/check.php"); ?>
                                         $sql = "SELECT B.VENDOR_NAMA, A.PAKET_JENIS, A.PAGU_KONTRAK, A.RANKING, A.NO_PJN,
 									A.TGL_PJN, A.NO_RKS, A.TGL_RKS, A.NO_SPP, A.TGL_SPP, A.NO_PENAWARAN, A.TGL_PENAWARAN, A.VENDOR_ID, TGL_AKHIR
 										FROM tb_pagu_kontrak A JOIN tb_vendor B WHERE A.VENDOR_ID=B.VENDOR_ID";
-                                        //echo  $sql;
                                         $resultQuery = mysqli_query($mysqli, $sql);
                                         while ($rows = mysqli_fetch_row($resultQuery)) {
                                             $data2[] = $rows;
