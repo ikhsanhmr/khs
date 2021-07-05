@@ -3,7 +3,7 @@
 	include_once("lib/check.php");
 	$spj_no = $_GET['spj_no'];
 	$sql="SELECT * FROM tb_upload_dok where spj_no='$spj_no'";
-		$resultQuery=mysqli_query($sql);
+		$resultQuery=mysqli_query($mysqli, $sql);
 		while ($rows=mysqli_fetch_row($resultQuery)){ 
 		$data[] = $rows;
 		}
@@ -35,7 +35,7 @@
 										$sql_summary = "SELECT count(spj_no) as jumlah
 														FROM tb_upload_dok
 														WHERE spj_no = '$spj_no'";
-										$res_summary = mysqli_query($sql_summary);
+										$res_summary = mysqli_query($mysqli, $sql_summary);
 										$summary = mysqli_fetch_assoc($res_summary);
 										$jumlah_update = $summary['jumlah'];
 									
@@ -78,7 +78,7 @@
 							$sql1 = "SELECT count(spj_no) as jumlah
 														FROM tb_upload_dok
 														WHERE spj_no = '$spj_no'";
-							$result = mysqli_query($sql1);
+							$result = mysqli_query($mysqli, $sql1);
 							$r = mysqli_fetch_row($result);
 							$numrows = $r[0];
 
@@ -115,7 +115,7 @@
 							if(count($data)==0){
 								$sql="SELECT * from tb_upload_dok 
 									WHERE spj_no = '$spj_no'";
-								$resultQuery=mysqli_query($sql);
+								$resultQuery=mysqli_query($mysqli, $sql);
 								while ($rows=mysqli_fetch_row($resultQuery)){ 
 								$spj_no = $rows[1];
 								}

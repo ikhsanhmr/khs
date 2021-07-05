@@ -21,10 +21,10 @@ document.getElementById("var_hasil_survey").disabled=false;
 
 <body class="skin-black">
 	<!--include file header-->
-	<?php 
-	include("lib/header.php");
-	$kode_area = $_SESSION['area'];
-	?>	
+	<?php
+    include("lib/header.php");
+    $kode_area = $_SESSION['area'];
+    ?>	
 		
 	<div class="wrapper row-offcanvas row-offcanvas-left">
     <!-- Left side column. contains the logo and sidebar -->
@@ -58,14 +58,13 @@ document.getElementById("var_hasil_survey").disabled=false;
 	                            <select class="form-control" name="var_no_surat_ptsp" id="var_no_surat_ptsp">
 	                            	<option>- Pilih No Surat Ke PTSP -</option>
 	                            	<?php
-										$data=select_perijinan();
-										for($i=0;$i<count($data);$i++){
-											$current_no_surat_ptsp	= $data[$i]['surat_ijin_no'];
-									?>
-									<option value='<?php echo $current_no_surat_ptsp; ?>'><?php echo $current_no_surat_ptsp;?></option>
+                                        $data=select_perijinan($mysqli);
+                                        for ($i=0;$i<count($data);$i++) {
+                                            $current_no_surat_ptsp	= $data[$i]['surat_ijin_no']; ?>
+									<option value='<?php echo $current_no_surat_ptsp; ?>'><?php echo $current_no_surat_ptsp; ?></option>
 									<?php
-										}
-									?>
+                                        }
+                                    ?>
 	                            </select>
 	                            </div>
 							</div>	

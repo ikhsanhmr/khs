@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include_once('lib/head.php');
 include_once("lib/check.php");
@@ -8,30 +8,30 @@ include_once("lib/check.php");
 
 <body class="skin-black">
 	<!--include file header-->
-	<?php 
-		include("lib/header.php");
-		$vendor_id	= $_GET['vendor_id'];
-		$paket_jenis	= $_GET['paket_jenis'];
+	<?php
+        include("lib/header.php");
+        $vendor_id	= $_GET['vendor_id'];
+        $paket_jenis	= $_GET['paket_jenis'];
 
-		//$query = "select * from tb_vendor where vendor_id='$vendor_id' ";
-		$query = "SELECT A.VENDOR_ID, A.VENDOR_NAMA, B.PAKET_JENIS, B.PAGU_KONTRAK, 
+        //$query = "select * from tb_vendor where vendor_id='$vendor_id' ";
+        $query = "SELECT A.VENDOR_ID, A.VENDOR_NAMA, B.PAKET_JENIS, B.PAGU_KONTRAK, 
 									B.TERPAKAI FROM tb_vendor A, tb_pagu_kontrak B WHERE A.VENDOR_ID=B.VENDOR_ID and A.vendor_id='$vendor_id'
 									and B.PAKET_JENIS='$paket_jenis'";
-									
-								
-		$resultQuery=mysqli_query($query);
-		while ($rows=mysqli_fetch_row($resultQuery)){ 
-			$data[] = $rows;
-		}
-		$current_vendor_id	= $data[0][0];
-		$current_vendor_nama= $data[0][1];
-		$paket_jenis= $data[0][2];
-		$pagu_kontrak= $data[0][3];
-		$err		=$_GET['err'];
-		$success	=$_GET['scs'];
-	
+                                    
+                                
+        $resultQuery=mysqli_query($mysqli, $query);
+        while ($rows=mysqli_fetch_row($resultQuery)) {
+            $data[] = $rows;
+        }
+        $current_vendor_id	= $data[0][0];
+        $current_vendor_nama= $data[0][1];
+        $paket_jenis= $data[0][2];
+        $pagu_kontrak= $data[0][3];
+        $err		=$_GET['err'];
+        $success	=$_GET['scs'];
+    
 
-	?>	
+    ?>	
 
 	<div class="wrapper row-offcanvas row-offcanvas-left">
 		<!-- Left side column. contains the logo and sidebar -->
@@ -90,15 +90,15 @@ include_once("lib/check.php");
 											</div>	
                                     
 										
-										<?php 
-											if(isset($err)){
-										?>
+										<?php
+                                            if (isset($err)) {
+                                                ?>
 										<tr>
 											<td colspan='4'><font color="red"><?php echo $err; ?></font></td>
 										</tr>
 										<?php
-											}
-										?>
+                                            }
+                                        ?>
 
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10"><button type="submit" class="btn btn-info" onclick="document.getElementById('submitForm').submit()">Submit</button></div>

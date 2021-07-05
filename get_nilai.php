@@ -6,7 +6,7 @@ session_start();
 $kode_area = $_SESSION['area'];
 $current_spj_no = $_GET['spj_no'];
 
-$respon = select_nilai_add($current_spj_no,$kode_area);
+$respon = select_nilai_add($current_spj_no,$kode_area, $mysqli);
 //echo 'dhaifina'.$respon;
 echo json_encode($respon);
 

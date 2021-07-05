@@ -25,7 +25,7 @@
 											<?php
 													$vendor_id = $_GET['vendor_id'];
 													$query = "select * from tb_fin_vendor where vendor_id = $vendor_id";
-													$resultQuery=mysqli_query($query);
+													$resultQuery=mysqli_query($mysqli, $query);
 													while ($rows=mysqli_fetch_row($resultQuery)){ 
 														$data[] = $rows;
 													}

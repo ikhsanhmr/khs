@@ -4,29 +4,29 @@
         include_once('lib/head.php');
         include_once("lib/check.php");
         
-        define('DB_SERVER', 'localhost');
-        define('DB_USERNAME', 'root');
-        define('DB_PASSWORD', 'root');
-        define('DB_DATABASE', 'db_khs');
-        $connection = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+        // define('DB_SERVER', 'localhost');
+        // define('DB_USERNAME', 'root');
+        // define('DB_PASSWORD', 'root');
+        // define('DB_DATABASE', 'db_khs');
+        // $mysqli = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
         
         $print_area = $_SESSION['area'];
         $pilih_paket = $_POST['pilih_paket'];
         
         $query_judul = "SELECT AREA_NAMA FROM `tb_area` WHERE AREA_KODE=$print_area";
-        $show_judul = mysqli_query($connection, $query_judul);
+        $show_judul = mysqli_query($mysqli, $query_judul);
         while ($rowjudul = mysqli_fetch_row($show_judul)) {
             $nama_area = $rowjudul[0];
         }
         
         $query_manager = "SELECT NAMA_MANAGER FROM tb_spj WHERE AREA_KODE=$print_area GROUP BY NAMA_MANAGER LIMIT 1";
-        $show_manager = mysqli_query($connection, $query_manager);
+        $show_manager = mysqli_query($mysqli, $query_manager);
         while ($rowmanager = mysqli_fetch_row($show_manager)) {
             $nama_manager = $rowmanager[0];
         }
         
         $query_paket = "SELECT PAKET_DESKRIPSI from tb_paket where paket_jenis=$pilih_paket";
-        $show_paket = mysqli_query($connection, $query_paket);
+        $show_paket = mysqli_query($mysqli, $query_paket);
         while ($row_paket=mysqli_fetch_row($show_paket)) {
             $paket_deskripsi = $row_paket[0];
         }
@@ -54,7 +54,7 @@
 												<th>ADMINISTRASI</th><th>KOMUNIKASI DAN RESPONSIVENESS</th><th>JUMLAH</th>
 												<th>KETERANGAN</th></tr></thead><tbody>";
                                     
-                            /*$query = mysqli_query($connection,"
+                            /*$query = mysqli_query($mysqli,"
                                         SELECT C.VENDOR_NAMA, SUM(case when B.id_deskripsi = 1 then ((b.nilai*b.bobot)/10) end)MUTU,
                                         SUM(case when B.id_deskripsi = 2 then ((b.nilai*b.bobot)/10) end)SDM,
                                         SUM(case when B.id_deskripsi = 5 then ((b.nilai*b.bobot)/10) end)Lingkungan,
@@ -65,7 +65,7 @@
                             ");	*/
                             
                             
-                            $query = mysqli_query($connection, "
+                            $query = mysqli_query($mysqli, "
 										SELECT C.VENDOR_NAMA, SUM(case when B.id_deskripsi = 1 then ((b.nilai*b.bobot)/10) end)MUTU, 
 										SUM(case when B.id_deskripsi = 2 then ((b.nilai*b.bobot)/10) end)SDM, 
 										SUM(case when B.id_deskripsi = 5 then ((b.nilai*b.bobot)/10) end)Lingkungan,

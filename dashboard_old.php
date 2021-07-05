@@ -84,7 +84,7 @@ where SKKI.AREA_kode = SKKO.AREA_kode";
 							}
 
 							$query = $query ." order by area_nama";
-							$resultQuery=mysqli_query($query);
+							$resultQuery=mysqli_query($mysqli, $query);
 							while ($rows=mysqli_fetch_row($resultQuery)){ 
 								$data[] = $rows;
 							}
@@ -293,7 +293,7 @@ where SKKI.AREA_kode = SKKO.AREA_kode";
 											where d.area_kode = a.area_kode
 											AND a.SKKI_JENIS = 'SKKI'
 											order by d.area_kode, a.skki_no) a group by paket_pekerjaan, AREA_KODE order by area_nama, paket_pekerjaan";
-							$resultQuery=mysqli_query($query1);
+							$resultQuery=mysqli_query($mysqli, $query1);
 							while ($rows=mysqli_fetch_row($resultQuery)){ 
 								$data1[] = $rows;
 							}

@@ -7,7 +7,7 @@ $current_spj_no = $_GET['spj_no'];
 
 $query = "SELECT COALESCE(MAX(PROGRESS_VALUE),0) FROM `tb_progress` WHERE SPJ_NO ='$current_spj_no' ";
 //echo $query;
-$result = mysqli_query($query);
+$result = mysqli_query($mysqli, $query);
 
 $respon = array();
 while ($hasil = mysqli_fetch_row($result))

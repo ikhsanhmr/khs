@@ -22,7 +22,7 @@
 								<div class="panel-body table-responsive">
 									<?php
 									$count = "SELECT count(vendor_id) FROM tb_fin_vendor ";
-									$count_res = mysqli_query($count);
+									$count_res = mysqli_query($mysqli, $count);
 									$r = mysqli_fetch_row($count_res);
 									$numrows = $r[0];
 
@@ -69,7 +69,7 @@
 												$sql="SELECT *
 														FROM tb_fin_vendor LIMIT $offset, $rowsperpage";
 													
-													$resultQuery=mysqli_query($sql);
+													$resultQuery=mysqli_query($mysqli, $sql);
 													while ($rows=mysqli_fetch_row($resultQuery)){ 
 														$data[] = $rows;
 													}

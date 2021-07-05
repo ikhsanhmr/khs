@@ -123,7 +123,7 @@ $respon = array();
 			and round((d.TERPAKAI+ $nilai)/d.PAGU_KONTRAK*100) <= 100
 			and d.TGL_AKHIR>='".$hariini."'
 			ORDER BY d.RANKING";
-	$result = mysqli_query($query);
+	$result = mysqli_query($mysqli, $query);
 	while ($hasil = mysqli_fetch_array($result))
 	{
 	   $respon[] = $hasil;

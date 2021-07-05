@@ -5,7 +5,7 @@ include_once("lib/function.php");
 $current_paket_jenis = $_GET['paket_jenis'] ;
 
 $query = "SELECT satuan FROM tb_paket where paket_jenis = $current_paket_jenis ";
-$result = mysqli_query($query);
+$result = mysqli_query($mysqli, $query);
 
 $respon = array();
 while ($hasil = mysqli_fetch_row($result))
