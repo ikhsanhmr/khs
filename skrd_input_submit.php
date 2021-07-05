@@ -12,7 +12,8 @@ $biaya_retribusi= $_POST['var_biaya_retribusi'];
 $return_skrd = skrd_add(
 		$surat_ijin_no,
 		$tgl_skrd,
-		$biaya_retribusi
+		$biaya_retribusi,
+		$mysqli
 		);
 
 if ($return_skrd==0) {
@@ -21,6 +22,4 @@ if ($return_skrd==0) {
 } else {
 	echo '<script language="javascript">alert("SKRD Gagal Ditambahkan")</script>';
 	echo '<script language="javascript">window.location = "perijinan.php"</script>';
-} 
-
-?>
+}

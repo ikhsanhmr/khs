@@ -38,7 +38,7 @@ $(document).ready(function() {
 								<div class="panel-body table-responsive">
 								<?php
 									$count = "select count(spj_no) from tb_pembayaran";
-									$count_res = mysqli_query($count);
+									$count_res = mysqli_query($mysqli, $count);
 									$r = mysqli_fetch_row($count_res);
 									$numrows = $r[0];
 
@@ -82,7 +82,7 @@ $(document).ready(function() {
 														from tb_vendor A JOIN tb_spj B JOIN tb_paket C JOIN tb_area E WHERE A.VENDOR_ID=B.VENDOR_ID 
 														AND C.PAKET_JENIS=B.PAKET_JENIS AND E.AREA_KODE= B.AREA_KODE AND B.SPJ_NO='$get_spj'";				
 													
-										$resultQuery=mysqli_query($query_judul);
+										$resultQuery=mysqli_query($mysqli, $query_judul);
 										while ($row=mysqli_fetch_row($resultQuery)){ 
 											$data[] = $row;
 										}
@@ -195,7 +195,7 @@ $(document).ready(function() {
 										$querys = "SELECT B.deskripsi, B.bobot, A.id_kriteria, A.bobot, A.kriteria, C.nilai, A.id_deskripsi 
 														from penilaian_kriteria A join penilaian_deskripsi B join penilaian_nilai C where  A.id_deskripsi=B.id_deskripsi and 
 														A.id_kriteria = C.id_kriteria and C.spj_no='$get_spj'";
-										$resultQuerys=mysqli_query($querys);
+										$resultQuerys=mysqli_query($mysqli, $querys);
 										while ($rows=mysqli_fetch_row($resultQuerys)){ 
 											$datas[] = $rows;
 										}
@@ -207,7 +207,7 @@ $(document).ready(function() {
 										
 										
 										
-										$resultQuery2=mysqli_query($query2);
+										$resultQuery2=mysqli_query($mysqli, $query2);
 										while ($row2=mysqli_fetch_row($resultQuery2)){ 
 											$data2[] = $row2;
 											$merge_mutu = $data2[0][0];
@@ -333,7 +333,7 @@ $(document).ready(function() {
 										$query_kel = "SELECT A.deskripsi, SUM((C.nilai*C.bobot)/10) AS total_nilai FROM penilaian_deskripsi A JOIN
 													penilaian_kriteria B JOIN penilaian_nilai C where a.id_deskripsi=b.id_deskripsi and b.id_kriteria=c.id_kriteria 
 													and c.spj_no='$get_spj' GROUP BY A.deskripsi ORDER BY A.id_deskripsi";
-										$resultQueryl=mysqli_query($query_kel);
+										$resultQueryl=mysqli_query($mysqli, $query_kel);
 										while ($rowl=mysqli_fetch_row($resultQueryl)){ 
 											$datal[] = $rowl;
 											
@@ -442,7 +442,7 @@ $(document).ready(function() {
 												<!--<a href="javascript:history.back()" class="btn btn-info pull-right"><i class="fa fa-backward"></i> Kembali</a>-->
 												<?php
 												$queryku = "SELECT verifikasi_mb, verifikasi_mup3 from tb_termin where spj_no='$get_spj'";
-													$resultQueryku=mysqli_query($queryku);
+													$resultQueryku=mysqli_query($mysqli, $queryku);
 													while ($rowku=mysqli_fetch_row($resultQueryku)){ 
 														$dataku[] = $rowku;
 													}

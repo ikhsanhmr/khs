@@ -1,10 +1,11 @@
 <?php
 //koneksi ke database
-mysqli_connect("10.3.0.15:8989","root","adadech");
-mysqli_select_db("khs_demo");
+// mysqli_connect("10.3.0.15:8989","root","adadech");
+// mysqli_select_db("khs_demo");
+include_once("lib/config.php");
 
 //mengambil data dari tabel
-$sql=mysqli_query("SELECT * FROM tb_spj ");
+$sql=mysqli_query($mysqli, "SELECT * FROM tb_spj ");
 $data = array();
 while ($row = mysqli_fetch_assoc($sql)) {
 	array_push($data, $row);
@@ -56,4 +57,3 @@ $pdf->Ln();
 
 //output file pdf
 $pdf->Output();
-?>

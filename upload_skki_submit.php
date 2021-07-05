@@ -42,7 +42,7 @@ else {
 			$var_paket		= trim($excel_data[$i][6]);	
 			//echo $var_skki_jenis;
 			
-			$return_insert = skki_upload($var_skki_jenis,$var_skki_no,$var_kode_area,$var_skki_nilai,$var_skki_tgl,$var_paket,$var_revisi,$var_flag,$var_tahun);		
+			$return_insert = skki_upload($var_skki_jenis,$var_skki_no,$var_kode_area,$var_skki_nilai,$var_skki_tgl,$var_paket,$var_revisi,$var_flag,$var_tahun, $mysqli);		
 		}
 	
 		
@@ -65,6 +65,3 @@ else {
     	echo '<script language="javascript">window.location = "upload_skki.php"</script>';
     }
 }
-
-
-?>

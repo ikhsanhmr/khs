@@ -1,6 +1,6 @@
 <?php session_start();
-	  include_once('lib/head.php');
-	  include_once("lib/check.php");?>
+      include_once('lib/head.php');
+      include_once("lib/check.php");?>
 	  
 <script type="text/javascript" src="js/jquery.js"></script>
 <link rel="stylesheet" type="text/css" href="datatables/media/css/dataTables.bootstrap.css">
@@ -26,10 +26,10 @@ $(document).ready(function() {
 	  
 	<body class="skin-black">
 		<!--include file header-->
-		<?php 
-			include("lib/header.php"); 
-			$kode_area = $_SESSION['area'];
-		?>
+		<?php
+            include("lib/header.php");
+            $kode_area = $_SESSION['area'];
+        ?>
 		<div class="wrapper row-offcanvas row-offcanvas-left">
             <!-- Left side column. contains the logo and sidebar -->
 			<?php include("lib/menu.php");?>
@@ -37,63 +37,63 @@ $(document).ready(function() {
             <aside class="right-side">
 								<div class="panel-body table-responsive">
 								<?php
-									$count = "select count(spj_no) from tb_pembayaran";
-									$count_res = mysqli_query($count);
-									$r = mysqli_fetch_row($count_res);
-									$numrows = $r[0];
+                                    $count = "select count(spj_no) from tb_pembayaran";
+                                    $count_res = mysqli_query($mysqli, $count);
+                                    $r = mysqli_fetch_row($count_res);
+                                    $numrows = $r[0];
 
-									// number of rows to show per page
-									$rowsperpage = 10;
-									// find out total pages
-									$totalpages = ceil($numrows / $rowsperpage);
+                                    // number of rows to show per page
+                                    $rowsperpage = 10;
+                                    // find out total pages
+                                    $totalpages = ceil($numrows / $rowsperpage);
 
-									// get the current page or set a default
-									if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
-									   // cast var as int
-									   $currentpage = (int) $_GET['currentpage'];
-									} else {
-									   // default page num
-									   $currentpage = 1;
-									} // end if
+                                    // get the current page or set a default
+                                    if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
+                                        // cast var as int
+                                        $currentpage = (int) $_GET['currentpage'];
+                                    } else {
+                                        // default page num
+                                        $currentpage = 1;
+                                    } // end if
 
-									// if current page is greater than total pages...
-									if ($currentpage > $totalpages) {
-									   // set current page to last page
-									   $currentpage = $totalpages;
-									} // end if
-									// if current page is less than first page...
-									if ($currentpage < 1) {
-									   // set current page to first page
-									   $currentpage = 1;
-									} // end if
+                                    // if current page is greater than total pages...
+                                    if ($currentpage > $totalpages) {
+                                        // set current page to last page
+                                        $currentpage = $totalpages;
+                                    } // end if
+                                    // if current page is less than first page...
+                                    if ($currentpage < 1) {
+                                        // set current page to first page
+                                        $currentpage = 1;
+                                    } // end if
 
-									// the offset of the list, based on current page 
-									$offset = ($currentpage - 1) * $rowsperpage;
-								?>
+                                    // the offset of the list, based on current page
+                                    $offset = ($currentpage - 1) * $rowsperpage;
+                                ?>
 								
 									<?php
-									$get_spj = $_GET['no_spj'];
-									$query_judul = 	"Select a.VENDOR_NAMA, A.DIREKSI_VENDOR, b.SPJ_NO, c.PAKET_DESKRIPSI2, B.SPJ_DESKRIPSI,
+                                    $get_spj = $_GET['no_spj'];
+                                    $query_judul = 	"Select a.VENDOR_NAMA, A.DIREKSI_VENDOR, b.SPJ_NO, c.PAKET_DESKRIPSI2, B.SPJ_DESKRIPSI,
 														B.SPJ_TANGGAL_MULAI, B.SPJ_TANGGAL_AKHIR, B.tgl_bastp, E.AREA_NAMA, C.PAKET_DESKRIPSI,B.pengawas_lap  
 														from tb_vendor A JOIN tb_spj B JOIN tb_paket C JOIN tb_area E WHERE A.VENDOR_ID=B.VENDOR_ID 
-														AND C.PAKET_JENIS=B.PAKET_JENIS AND E.AREA_KODE= B.AREA_KODE AND B.SPJ_NO='$get_spj'";	
-										$resultQuery=mysqli_query($query_judul);
-										while ($row=mysqli_fetch_row($resultQuery)){ 
-											$data[] = $row;
-										}
-											$nama_perusahaan 	= $data[0][0];
-											$nama_direktur 		= $data[0][1];
-											$no_khs				= $data[0][2];
-											$j_pekerjaan		= $data[0][3];
-											$n_pekerjaan		= $data[0][4];
-											$tgl_spbj			= $data[0][5];
-											$tgl_akhr_kon		= $data[0][6];
-											$tgl_bastp			= $data[0][7];
-											$print_area			= $data[0][8];
-											$kode_kerja			= $data[0][9];
-											$pengawas_lap		= $data[0][10];
-								
-								?>
+														AND C.PAKET_JENIS=B.PAKET_JENIS AND E.AREA_KODE= B.AREA_KODE AND B.SPJ_NO='$get_spj'";
+                                        $resultQuery=mysqli_query($mysqli, $query_judul);
+                                        while ($row=mysqli_fetch_row($resultQuery)) {
+                                            $data[] = $row;
+                                        }
+                                            $nama_perusahaan 	= $data[0][0];
+                                            $nama_direktur 		= $data[0][1];
+                                            $no_khs				= $data[0][2];
+                                            $j_pekerjaan		= $data[0][3];
+                                            $n_pekerjaan		= $data[0][4];
+                                            $tgl_spbj			= $data[0][5];
+                                            $tgl_akhr_kon		= $data[0][6];
+                                            $tgl_bastp			= $data[0][7];
+                                            $print_area			= $data[0][8];
+                                            $kode_kerja			= $data[0][9];
+                                            $pengawas_lap		= $data[0][10];
+                                
+                                ?>
 								
 								<section class="panel">
 								<header class="panel-heading">Form Evaluasi Vendor KHSJ 2019</header>
@@ -183,121 +183,121 @@ $(document).ready(function() {
 									
 									<tbody>
 									<?php
-										$querys = "SELECT B.deskripsi, B.bobot, A.id_kriteria, A.bobot, A.kriteria, C.nilai 
+                                        $querys = "SELECT B.deskripsi, B.bobot, A.id_kriteria, A.bobot, A.kriteria, C.nilai 
 														from penilaian_kriteria A join penilaian_deskripsi B join penilaian_nilai C where  A.id_deskripsi=B.id_deskripsi and 
 														A.id_kriteria = C.id_kriteria and C.spj_no='$get_spj'";
-														
-										$resultQuerys=mysqli_query($querys);
-										while ($rows=mysqli_fetch_row($resultQuerys)){ 
-											$datas[] = $rows;
-										}
-										
-										
-										/*$query2 = "SELECT A.deskripsi, SUM((C.nilai*C.bobot)/10) AS total_nilai FROM penilaian_deskripsi A JOIN
-													penilaian_kriteria B JOIN penilaian_nilai C where a.id_deskripsi=b.id_deskripsi and b.id_kriteria=c.id_kriteria 
-													and c.spj_no='$get_spj' GROUP BY A.deskripsi ORDER BY A.id_deskripsi";
-										
-										
-										
-										$resultQuery2=mysqli_query($query2);
-										while ($row2=mysqli_fetch_row($resultQuery2)){ 
-											$data2[] = $row2;
-											$merge_mutu = $data2[0][0];
-											$total_nilai = $data2[0][1];
-										}*/
-										 
-										$arr = array();	
-										/*for($j=0;$j<count($datas);$j++){
-											
-											$mutu = $datas[$j][0];
-											$bobot1 = $datas[$j][1];
-											$id = $datas[$j][2];
-											$bobots = $datas[$j][3];
-											$kriteria = $datas[$j][4];
-											$nilai = $datas[$j][5];
-											$score = $nilai * $bobots;
-											
-										/*	if($mutu==$merge_mutu){
-												$print_total_nilai = "<td rowspan='4' align='center'>$total_nilai</td>";
-											}
-											*/
-											/*$edit_action = "<a href='penilaian_kriteria_edit.php?id=$id'>Edit</a>";
-											$delete_action = "<a href='penilaian_kriteria_delete.php?id=$id' onclick='return confirm(\"Hapus : ".$kriteria." ?\")'>Delete</a>";
-											$nilais = "<input type='text' class='form-control' name='isi_nilai[$id]' id='isi_nilai[$id]' placeholder='nilai' value='$nilai'  size='8' disabled>
-														<input type='hidden' name='isi_id[$id]' value='$id'>";
-															
-											$bobot = "<input type='text' class='form-control' name='isi_bobot[$id]'  id='isi_bobot[$id]' required='' size='8' value='$bobots' disabled>
-														<input type='hidden' class='form-control' name='isi_bobot[$id]'  id='isi_bobot[$id]' required='' size='8' value='$bobots'>";
-											$scores = "<input type='text' class='form-control' name='isi_score[$id]'  id='isi_score[$id]' placeholder='score' required='' size='8' value='$score' disabled>";
-											
-											$no = $j+$offset+1;
-											echo "<tr><td>$no</td>
-													<td>$mutu</td>
-													<td>$bobot1%</td>
-													<td>$kriteria</td>
-													<td>$nilais</td>
-													<td>$bobot</td>
-													<td>$scores</td>
-													</tr>
-													";
-											} */
-									for($j=0;$j<count($datas);$j++){
-											$ar_line = array();
-											$arr[$datas[$j][0]]['bobot'] = $datas[$j][1];
-											$arr[$datas[$j][0]]['count'] ++;
-											if($arr[$datas[$j][0]]['count']==1){
-												$arr[$datas[$j][0]]['item'] = array();
-											}
-											$ar_line['id'] = $datas[$j][2];
-											$ar_line['bobots'] = $datas[$j][3];
-											$ar_line['kriteria'] = $datas[$j][4];
-											$ar_line['nilai'] = $datas[$j][5];
-											$ar_line['id_deskripsi'] = $datas[$j][6];
-											
-											array_push($arr[$datas[$j][0]]['item'],$ar_line);
-										}
-										// echo "<pre>";print_r($arr);echo "</pre>";exit();
-										$nom = 1;
-										foreach ($arr as $key => $value) {
-											$mutu = $key;
-											$bobot1 = $value['bobot'];
-											echo "<tr><td rowspan=".++$value['count'].">".$nom++."</td>";
-											echo "<td rowspan=".$value['count'].">".$mutu."</td>";
-											echo "<td rowspan=".$value['count'].">".$bobot1."%</td>";
-											echo "<td></td>";
-											foreach ($value['item'] as $it) {
-												$id = $it['id'];
-												$bobots = $it['bobots'];
-												$kriteria = $it['kriteria'];
-												$nilai = $it['nilai'];
-												$id_deskripsi = $it['id_deskripsi'];
-												$score = $nilai * $bobots;
-												/*$nilai = "<input type='text' class='form-control' name='isi_nilai[$id]' id='isi_nilai[$id]' placeholder='nilai' required='' size='8' onInput='cari_score(this.value,$id)'>
-															<input type='hidden' name='isi_id[$id]' value='$id'>";*/
-															
-												$nilais="<input type='number'  value='$nilai' name='isi_nilai[$id]' id='isi_nilai[$id]' min='1' max='5' onchange='cari_score(this.value,$id)'  oninput='(!validity.rangeOverflow||(value=5)) && (!validity.rangeUnderflow||(value=1)) &&
+                                                        
+                                        $resultQuerys=mysqli_query($mysqli, $querys);
+                                        while ($rows=mysqli_fetch_row($resultQuerys)) {
+                                            $datas[] = $rows;
+                                        }
+                                        
+                                        
+                                        /*$query2 = "SELECT A.deskripsi, SUM((C.nilai*C.bobot)/10) AS total_nilai FROM penilaian_deskripsi A JOIN
+                                                    penilaian_kriteria B JOIN penilaian_nilai C where a.id_deskripsi=b.id_deskripsi and b.id_kriteria=c.id_kriteria
+                                                    and c.spj_no='$get_spj' GROUP BY A.deskripsi ORDER BY A.id_deskripsi";
+
+
+
+                                        $resultQuery2=mysqli_query($mysqli, $query2);
+                                        while ($row2=mysqli_fetch_row($resultQuery2)){
+                                            $data2[] = $row2;
+                                            $merge_mutu = $data2[0][0];
+                                            $total_nilai = $data2[0][1];
+                                        }*/
+                                         
+                                        $arr = array();
+                                        /*for($j=0;$j<count($datas);$j++){
+
+                                            $mutu = $datas[$j][0];
+                                            $bobot1 = $datas[$j][1];
+                                            $id = $datas[$j][2];
+                                            $bobots = $datas[$j][3];
+                                            $kriteria = $datas[$j][4];
+                                            $nilai = $datas[$j][5];
+                                            $score = $nilai * $bobots;
+
+                                        /*	if($mutu==$merge_mutu){
+                                                $print_total_nilai = "<td rowspan='4' align='center'>$total_nilai</td>";
+                                            }
+                                            */
+                                            /*$edit_action = "<a href='penilaian_kriteria_edit.php?id=$id'>Edit</a>";
+                                            $delete_action = "<a href='penilaian_kriteria_delete.php?id=$id' onclick='return confirm(\"Hapus : ".$kriteria." ?\")'>Delete</a>";
+                                            $nilais = "<input type='text' class='form-control' name='isi_nilai[$id]' id='isi_nilai[$id]' placeholder='nilai' value='$nilai'  size='8' disabled>
+                                                        <input type='hidden' name='isi_id[$id]' value='$id'>";
+
+                                            $bobot = "<input type='text' class='form-control' name='isi_bobot[$id]'  id='isi_bobot[$id]' required='' size='8' value='$bobots' disabled>
+                                                        <input type='hidden' class='form-control' name='isi_bobot[$id]'  id='isi_bobot[$id]' required='' size='8' value='$bobots'>";
+                                            $scores = "<input type='text' class='form-control' name='isi_score[$id]'  id='isi_score[$id]' placeholder='score' required='' size='8' value='$score' disabled>";
+
+                                            $no = $j+$offset+1;
+                                            echo "<tr><td>$no</td>
+                                                    <td>$mutu</td>
+                                                    <td>$bobot1%</td>
+                                                    <td>$kriteria</td>
+                                                    <td>$nilais</td>
+                                                    <td>$bobot</td>
+                                                    <td>$scores</td>
+                                                    </tr>
+                                                    ";
+                                            } */
+                                    for ($j=0;$j<count($datas);$j++) {
+                                        $ar_line = array();
+                                        $arr[$datas[$j][0]]['bobot'] = $datas[$j][1];
+                                        $arr[$datas[$j][0]]['count'] ++;
+                                        if ($arr[$datas[$j][0]]['count']==1) {
+                                            $arr[$datas[$j][0]]['item'] = array();
+                                        }
+                                        $ar_line['id'] = $datas[$j][2];
+                                        $ar_line['bobots'] = $datas[$j][3];
+                                        $ar_line['kriteria'] = $datas[$j][4];
+                                        $ar_line['nilai'] = $datas[$j][5];
+                                        $ar_line['id_deskripsi'] = $datas[$j][6];
+                                            
+                                        array_push($arr[$datas[$j][0]]['item'], $ar_line);
+                                    }
+                                        // echo "<pre>";print_r($arr);echo "</pre>";exit();
+                                        $nom = 1;
+                                        foreach ($arr as $key => $value) {
+                                            $mutu = $key;
+                                            $bobot1 = $value['bobot'];
+                                            echo "<tr><td rowspan=".++$value['count'].">".$nom++."</td>";
+                                            echo "<td rowspan=".$value['count'].">".$mutu."</td>";
+                                            echo "<td rowspan=".$value['count'].">".$bobot1."%</td>";
+                                            echo "<td></td>";
+                                            foreach ($value['item'] as $it) {
+                                                $id = $it['id'];
+                                                $bobots = $it['bobots'];
+                                                $kriteria = $it['kriteria'];
+                                                $nilai = $it['nilai'];
+                                                $id_deskripsi = $it['id_deskripsi'];
+                                                $score = $nilai * $bobots;
+                                                /*$nilai = "<input type='text' class='form-control' name='isi_nilai[$id]' id='isi_nilai[$id]' placeholder='nilai' required='' size='8' onInput='cari_score(this.value,$id)'>
+                                                            <input type='hidden' name='isi_id[$id]' value='$id'>";*/
+                                                            
+                                                $nilais="<input type='number'  value='$nilai' name='isi_nilai[$id]' id='isi_nilai[$id]' min='1' max='5' onchange='cari_score(this.value,$id)'  oninput='(!validity.rangeOverflow||(value=5)) && (!validity.rangeUnderflow||(value=1)) &&
 														(!validity.stepMismatch||(value=parseInt(this.value)));'>
 														<input type='hidden' name='isi_id[$id]' value='$id'>
-														";			
-															
-												$bobot = "<input type='text' class='form-control' name='isi_bobot[$id]'  id='isi_bobot[$id]' required='' size='8' value='$bobots' disabled>
+														";
+                                                            
+                                                $bobot = "<input type='text' class='form-control' name='isi_bobot[$id]'  id='isi_bobot[$id]' required='' size='8' value='$bobots' disabled>
 															<input type='hidden' class='form-control' name='isi_bobot[$id]'  id='isi_bobot[$id]' required='' size='8' value='$bobots'>";
-												$scores = "<input type='text' class='form-control' name='isi_score[$id]'  id='isi_score[$id]' placeholder='score' required='' size='8' value='$score' disabled>
+                                                $scores = "<input type='text' class='form-control' name='isi_score[$id]'  id='isi_score[$id]' placeholder='score' required='' size='8' value='$score' disabled>
 															<input type='hidden' name='isi_id_deskripsi[$id]' value='$id_deskripsi'>";
-												
-												$no = $j+$offset+1;
-												echo "<tr>
+                                                
+                                                $no = $j+$offset+1;
+                                                echo "<tr>
 														<td>$kriteria</td>
 														<td>$nilais</td>
 														<td>$bobot</td>
 														<td>$scores</td>
 														</tr>
 														";
-												}
-											}
-											
-											
-									?>
+                                            }
+                                        }
+                                            
+                                            
+                                    ?>
 									</tbody>
 								</table>
 								<br/>
@@ -318,49 +318,47 @@ $(document).ready(function() {
 									
 									<tbody>
 									<?php
-										$query_kel = "SELECT A.deskripsi, SUM((C.nilai*C.bobot)/10) AS total_nilai FROM penilaian_deskripsi A JOIN
+                                        $query_kel = "SELECT A.deskripsi, SUM((C.nilai*C.bobot)/10) AS total_nilai FROM penilaian_deskripsi A JOIN
 													penilaian_kriteria B JOIN penilaian_nilai C where a.id_deskripsi=b.id_deskripsi and b.id_kriteria=c.id_kriteria 
 													and c.spj_no='$get_spj' GROUP BY A.deskripsi ORDER BY A.id_deskripsi";
-										$resultQueryl=mysqli_query($query_kel);
-										while ($rowl=mysqli_fetch_row($resultQueryl)){ 
-											$datal[] = $rowl;
-											
-										}
-										
-										$total_inisiasi = 0;
-										for($j=0;$j<count($datal);$j++){
-											
-											$tamp_total = $datal[$j][1];
-											$total_inisiasi +=$tamp_total;
-											
-											$keterangan_akhir = "";
-												if($total_inisiasi >0 && $total_inisiasi <2.1){
-													$keterangan_akhir = "Sangat Kurang";
-												}elseif($total_inisiasi>=2.1 && $total_inisiasi <4.1){
-													$keterangan_akhir = "Kurang";
-												}elseif($total_inisiasi>=4.1 && $total_inisiasi <6.1){
-													$keterangan_akhir = "Cukup";
-												}elseif ($total_inisiasi>=6.1 && $total_inisiasi <8.1){
-													$keterangan_akhir="Baik";
-												}elseif ($total_inisiasi>=8.1 && $total_inisiasi<=10){
-													$keterangan_akhir="Baik Sekali";
-												}
-												
-											
-											$desk = $datal[$j][0];
-											$total_nilail = $datal[$j][1];
-											$total_nilai1_print = number_format($total_nilail, 1, '.', '');
-											
-											$edit_action = "<a href='penilaian_kriteria_edit.php?id=$id'>Edit</a>";
-											$delete_action = "<a href='penilaian_kriteria_delete.php?id=$id' onclick='return confirm(\"Hapus : ".$kriteria." ?\")'>Delete</a>";
-											
-											$no = $j+$offset+1;
-											echo "<tr><td>$no</td>
+                                        $resultQueryl=mysqli_query($mysqli, $query_kel);
+                                        while ($rowl=mysqli_fetch_row($resultQueryl)) {
+                                            $datal[] = $rowl;
+                                        }
+                                        
+                                        $total_inisiasi = 0;
+                                        for ($j=0;$j<count($datal);$j++) {
+                                            $tamp_total = $datal[$j][1];
+                                            $total_inisiasi +=$tamp_total;
+                                            
+                                            $keterangan_akhir = "";
+                                            if ($total_inisiasi >0 && $total_inisiasi <2.1) {
+                                                $keterangan_akhir = "Sangat Kurang";
+                                            } elseif ($total_inisiasi>=2.1 && $total_inisiasi <4.1) {
+                                                $keterangan_akhir = "Kurang";
+                                            } elseif ($total_inisiasi>=4.1 && $total_inisiasi <6.1) {
+                                                $keterangan_akhir = "Cukup";
+                                            } elseif ($total_inisiasi>=6.1 && $total_inisiasi <8.1) {
+                                                $keterangan_akhir="Baik";
+                                            } elseif ($total_inisiasi>=8.1 && $total_inisiasi<=10) {
+                                                $keterangan_akhir="Baik Sekali";
+                                            }
+                                                
+                                            
+                                            $desk = $datal[$j][0];
+                                            $total_nilail = $datal[$j][1];
+                                            $total_nilai1_print = number_format($total_nilail, 1, '.', '');
+                                            
+                                            $edit_action = "<a href='penilaian_kriteria_edit.php?id=$id'>Edit</a>";
+                                            $delete_action = "<a href='penilaian_kriteria_delete.php?id=$id' onclick='return confirm(\"Hapus : ".$kriteria." ?\")'>Delete</a>";
+                                            
+                                            $no = $j+$offset+1;
+                                            echo "<tr><td>$no</td>
 													<td>$desk</td>
 													<td>$total_nilai1_print</td>
 													";
-											}
-									?>
+                                        }
+                                    ?>
 									</tr>
 									<tr>
 										<td><font size="3"><b>Total Score Penilaian Vendor</b></font></td>
@@ -421,32 +419,33 @@ $(document).ready(function() {
 												<!--<a class="btn  btn-success"   data-toggle="tooltip" title="Simpan " href="<?php echo $aksi ?>?module=pengambilan_obat&aksi=approve_tagihan&id_cek_tagihan=<?php echo $id_cek_tagihan?>" onclick="return confirm('Anda Yakin Akan Approve Tagihan No: <?php echo $edit11['no_tagihan']; ?>?')"><i class="glyphicon glyphicon-ok"></i> Terima</a>-->
 												<!--<a href="javascript:history.back()" class="btn btn-info pull-right"><i class="fa fa-backward"></i> Kembali</a>-->
 												<?php
-												$queryku = "SELECT verifikasi_evaluasi from tb_termin where spj_no='$get_spj'";
-													$resultQueryku=mysqli_query($queryku);
-													while ($rowku=mysqli_fetch_row($resultQueryku)){ 
-														$dataku[] = $rowku;
-													}
-													$verifikasiku	= $dataku[0][0];
-													
-													if($verifikasiku==1){
-														$status = "<a href='#' class='btn btn-success'><i class='glyphicon glyphicon-check'></i> Diterima</a>";
-													}elseif($verifikasiku==2){
-														$status = "<a href='#' class='btn btn-danger'><i class='glyphicon glyphicon-check'></i> Ditolak</a>";
-													}
+                                                $queryku = "SELECT verifikasi_evaluasi from tb_termin where spj_no='$get_spj'";
+                                                    $resultQueryku=mysqli_query($mysqli, $queryku);
+                                                    while ($rowku=mysqli_fetch_row($resultQueryku)) {
+                                                        $dataku[] = $rowku;
+                                                    }
+                                                    $verifikasiku	= $dataku[0][0];
+                                                    
+                                                    if ($verifikasiku==1) {
+                                                        $status = "<a href='#' class='btn btn-success'><i class='glyphicon glyphicon-check'></i> Diterima</a>";
+                                                    } elseif ($verifikasiku==2) {
+                                                        $status = "<a href='#' class='btn btn-danger'><i class='glyphicon glyphicon-check'></i> Ditolak</a>";
+                                                    }
 
-														
-													if($verifikasiku==0){
-												?>
+                                                        
+                                                    if ($verifikasiku==0) {
+                                                        ?>
 												<div class="col-sm-4">
 												<a href="isi_verifikasi_submit.php?&no_spj=<?php echo $get_spj?>&verifikasi=1" onclick="return confirm('Anda Setuju Dengan  Evaluasi ini?')"  class="btn btn-success"><i class="glyphicon glyphicon-check"></i> Setuju</a>
 												</div>
 												<div class="col-sm-4">
 												<a href="isi_verifikasi_catatan.php?&no_spj=<?php echo $get_spj?>&verifikasi=2" onclick="return confirm('Anda Menolak Evaluasi ini?')"  class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Tolak</a>
 												</div>
-													<?php }else{
-														echo $status;
-													?>
-													<?php } ?>
+													<?php
+                                                    } else {
+                                                        echo $status; ?>
+													<?php
+                                                    } ?>
 												<a href="javascript:history.back()" class="btn btn-info pull-right"><i class="fa fa-backward"></i> Kembali</a>
 											</div>
 									</div> 

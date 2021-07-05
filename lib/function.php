@@ -26,7 +26,7 @@ include_once("lib/config.php");
         return $data;
     }
     
-    function vendor_tersedia($mysqli, $var_paket_pekerjaan, $year)
+    function vendor_tersedia($var_paket_pekerjaan, $year, $mysqli)
     {
         $sql="select vendor_nama, fin_limit, fin_current, a.vendor_id
 			from tb_vendor a, tb_fin_vendor b, tb_mapping_vendor c, tb_paket d

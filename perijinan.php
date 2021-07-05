@@ -68,7 +68,7 @@ include_once("lib/check.php");
 										)total";
 
 										//$sql= ""
-								$result = mysqli_query($sql);
+								$result = mysqli_query($mysqli, $sql);
 								$r = mysqli_fetch_row($result);
 								$numrows = $r[0];
 
@@ -82,7 +82,7 @@ include_once("lib/check.php");
 								$sql = "SELECT count( * )
 										FROM ( SELECT s.spj_no, d.jumlah_dok, i.jumlah FROM tb_spj s left JOIN tb_dokumen d ON d.spj_no = s.spj_no LEFT JOIN ( SELECT spj_no, COUNT( spj_no ) AS jumlah FROM tb_ijin GROUP BY spj_no )i ON s.spj_no = i.spj_no where d.jumlah_dok != '' AND s.SPJ_STATUS='0' AND d.info_01='0' AND s.spj_no LIKE '%$no_spj%' 
 										)total";
-								$result = mysqli_query($sql);
+								$result = mysqli_query($mysqli, $sql);
 								$r = mysqli_fetch_row($result);
 								$numrows = $r[0];
 
@@ -92,7 +92,7 @@ include_once("lib/check.php");
 									LIMIT $offset, $rowsperpage";
 							}
 
-							$resultQuery=mysqli_query($sql);
+							$resultQuery=mysqli_query($mysqli, $sql);
 							while ($rows=mysqli_fetch_row($resultQuery)){ 
 								$data[] = $rows;
 							}

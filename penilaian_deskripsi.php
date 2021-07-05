@@ -1,6 +1,6 @@
 <?php session_start();
-	include_once('lib/head.php');
-	  include_once("lib/check.php");?>
+    include_once('lib/head.php');
+      include_once("lib/check.php");?>
 	  
 <script type="text/javascript" src="js/jquery.js"></script>
 <link rel="stylesheet" type="text/css" href="datatables/media/css/dataTables.bootstrap.css">
@@ -26,10 +26,10 @@ $(document).ready(function() {
 	  
 	<body class="skin-black">
 		<!--include file header-->
-		<?php 
-			include("lib/header.php"); 
-			$kode_area = $_SESSION['area'];
-		?>
+		<?php
+            include("lib/header.php");
+            $kode_area = $_SESSION['area'];
+        ?>
 		<div class="wrapper row-offcanvas row-offcanvas-left">
             <!-- Left side column. contains the logo and sidebar -->
 			<?php include("lib/menu.php");?>
@@ -69,39 +69,39 @@ $(document).ready(function() {
 								
 								<div class="panel-body table-responsive">
 								<?php
-									$count = "select count(id_deskripsi) from penilaian_deskripsi";
-									$count_res = mysqli_query($count);
-									$r = mysqli_fetch_row($count_res);
-									$numrows = $r[0];
+                                    $count = "select count(id_deskripsi) from penilaian_deskripsi";
+                                    $count_res = mysqli_query($mysqli, $count);
+                                    $r = mysqli_fetch_row($count_res);
+                                    $numrows = $r[0];
 
-									// number of rows to show per page
-									$rowsperpage = 10;
-									// find out total pages
-									$totalpages = ceil($numrows / $rowsperpage);
+                                    // number of rows to show per page
+                                    $rowsperpage = 10;
+                                    // find out total pages
+                                    $totalpages = ceil($numrows / $rowsperpage);
 
-									// get the current page or set a default
-									if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
-									   // cast var as int
-									   $currentpage = (int) $_GET['currentpage'];
-									} else {
-									   // default page num
-									   $currentpage = 1;
-									} // end if
+                                    // get the current page or set a default
+                                    if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
+                                        // cast var as int
+                                        $currentpage = (int) $_GET['currentpage'];
+                                    } else {
+                                        // default page num
+                                        $currentpage = 1;
+                                    } // end if
 
-									// if current page is greater than total pages...
-									if ($currentpage > $totalpages) {
-									   // set current page to last page
-									   $currentpage = $totalpages;
-									} // end if
-									// if current page is less than first page...
-									if ($currentpage < 1) {
-									   // set current page to first page
-									   $currentpage = 1;
-									} // end if
+                                    // if current page is greater than total pages...
+                                    if ($currentpage > $totalpages) {
+                                        // set current page to last page
+                                        $currentpage = $totalpages;
+                                    } // end if
+                                    // if current page is less than first page...
+                                    if ($currentpage < 1) {
+                                        // set current page to first page
+                                        $currentpage = 1;
+                                    } // end if
 
-									// the offset of the list, based on current page 
-									$offset = ($currentpage - 1) * $rowsperpage;
-								?>
+                                    // the offset of the list, based on current page
+                                    $offset = ($currentpage - 1) * $rowsperpage;
+                                ?>
 								</section>
 								<section class="panel">
 								<header class="panel-heading">TABEL Deskripsi Penilaian</header>
@@ -120,25 +120,25 @@ $(document).ready(function() {
 									
 									<tbody>
 									<?php
-										$query = "select * from penilaian_deskripsi";
-										$resultQuery=mysqli_query($query);
-										while ($rows=mysqli_fetch_row($resultQuery)){ 
-											$data[] = $rows;
-										}
-										for($i=0;$i<count($data);$i++){
-											$id = $data[$i][0];
-											$deskripsi = $data[$i][1];
-											$bobot = $data[$i][2];
-											$edit_action = "<a href='penilaian_deskripsi_edit.php?id=$id'>Edit</a>";
-											$delete_action = "<a href='penilaian_deskripsi_delete.php?id=$id' onclick='return confirm(\"Hapus : ".$deskripsi." ?\")'>Delete</a>";
-											$no = $i+$offset+1;
-											echo "<tr><td>$no</td>
+                                        $query = "select * from penilaian_deskripsi";
+                                        $resultQuery=mysqli_query($mysqli, $query);
+                                        while ($rows=mysqli_fetch_row($resultQuery)) {
+                                            $data[] = $rows;
+                                        }
+                                        for ($i=0;$i<count($data);$i++) {
+                                            $id = $data[$i][0];
+                                            $deskripsi = $data[$i][1];
+                                            $bobot = $data[$i][2];
+                                            $edit_action = "<a href='penilaian_deskripsi_edit.php?id=$id'>Edit</a>";
+                                            $delete_action = "<a href='penilaian_deskripsi_delete.php?id=$id' onclick='return confirm(\"Hapus : ".$deskripsi." ?\")'>Delete</a>";
+                                            $no = $i+$offset+1;
+                                            echo "<tr><td>$no</td>
 													<td>$deskripsi</td>
 													<td>$bobot%</td>
 													<td>$edit_action</td>
 													<td>$delete_action</td></tr>";
-											}
-									?>
+                                        }
+                                    ?>
 									</tbody>
 								</table>
 								</div>

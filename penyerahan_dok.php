@@ -7,10 +7,10 @@ include_once("lib/function.php");
 
 <body class="skin-black">
 	<!--include file header-->
-	<?php 
-	include("lib/header.php");
-	$kode_area = $_SESSION['area'];
-	?>	
+	<?php
+    include("lib/header.php");
+    $kode_area = $_SESSION['area'];
+    ?>	
 		
 	<div class="wrapper row-offcanvas row-offcanvas-left">
     <!-- Left side column. contains the logo and sidebar -->
@@ -31,19 +31,18 @@ include_once("lib/function.php");
 	                            <select class="form-control" name="var_no_spj">
 	                            	<option>- Pilih No SPJ -</option>
 	                            	<?php
-										$sql = "SELECT * FROM TB_SPJ WHERE SPJ_STATUS='0' AND PAKET_JENIS IN (1,2) ";
-										$resultQuery=mysqli_query($sql);
-										while ($rows=mysqli_fetch_row($resultQuery)){ 
-											$data[] = $rows;
-										}
-										//$jum_spj= count($data);
-										for($i=0;$i<count($data);$i++){
-											$current_spj_no	= $data[$i][0];
-									?>
-									<option value='<?php echo $current_spj_no; ?>'><?php echo $current_spj_no;?></option>
+                                        $sql = "SELECT * FROM TB_SPJ WHERE SPJ_STATUS='0' AND PAKET_JENIS IN (1,2) ";
+                                        $resultQuery=mysqli_query($mysqli, $sql);
+                                        while ($rows=mysqli_fetch_row($resultQuery)) {
+                                            $data[] = $rows;
+                                        }
+                                        //$jum_spj= count($data);
+                                        for ($i=0;$i<count($data);$i++) {
+                                            $current_spj_no	= $data[$i][0]; ?>
+									<option value='<?php echo $current_spj_no; ?>'><?php echo $current_spj_no; ?></option>
 									<?php
-										}
-									?>
+                                        }
+                                    ?>
 	                            </select>
 	                            </div>
 							</div>	
