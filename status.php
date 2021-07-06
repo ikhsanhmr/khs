@@ -3,6 +3,8 @@ include_once('lib/head.php');
 include_once("lib/check.php");
 $id_vendor = $_GET['id'];
 $paket_jenis = $_GET['id2'];
+// var_dump($id_vendor);
+// die;
 $sql = "SELECT c.area_nama, 
 			a.SPJ_NO, 
 			a.SPJ_ADD_NILAI, 

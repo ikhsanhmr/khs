@@ -48,7 +48,18 @@ include_once("lib/GLOBAL_VAR.php");
                                 <form role="form">
                                     <div class="form-group">
                                         <label for="Area">Area</label>
-                                        <input type="text" class="form-control" placeholder="Area" name="area">
+                                        <select class="form-control m-b-10" name="area">
+                                            <option value="">-Pilih Area-</option>
+                                            <?php
+                                            $data_area = select_area($mysqli);
+                                            for ($i = 0; $i < count($data_area); $i++) {
+                                                $current_area_kode = $data_area[$i][0];
+                                                $current_area_nama = $data_area[$i][1]; ?>
+                                                <option value="<?php echo $current_area_kode; ?>"><?php echo $current_area_nama; ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
 
                                     <div class="form-group">
