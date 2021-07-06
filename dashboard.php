@@ -58,7 +58,7 @@ include_once('lib/head.php');
 								<tbody>
 								<?php
 								$tahun = $_GET['tahun'];
-								// var_dump($tahun);
+								var_dump($tahun);
 								// die;
 								if($tahun=='')
 								{	$query = `select SKKI.area_nama, skki_nilai, skko_nilai, skki_nilai+skko_nilai,skki_spj,skko_spj, skki_bayar, skko_bayar, SKKI.area_kode  from 
@@ -131,9 +131,9 @@ include_once('lib/head.php');
 								// 	$query = $query ." and SKKI.area_kode = $area";
 								// }
 			
-								$query = $query ." order by area_nama";
+								// $query = $query ." order by area_nama";
 								$resultQuery = mysqli_query($mysqli, $query);
-								// var_dump($resultQuery);
+								var_dump($resultQuery);
 								// die;
 								while ($rows = mysqli_fetch_row($resultQuery)){ 
 									$data[] = $rows;

@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include_once('lib/head.php');
 include_once("lib/check.php");
@@ -8,38 +8,38 @@ include_once("lib/check.php");
 
 <body class="skin-black">
 	<!--include file header-->
-	<?php 
-		include("lib/header.php");
-		$vendor_id	= $_GET['vendor_id'];
+	<?php
+        include("lib/header.php");
+        $vendor_id	= $_GET['vendor_id'];
 
-		//$query = "select * from tb_vendor where vendor_id='$vendor_id' ";
-		$query = "SELECT a.vendor_id, a.vendor_nama, b.rating_laporan_audit, 
+        //$query = "select * from tb_vendor where vendor_id='$vendor_id' ";
+        $query = "SELECT a.vendor_id, a.vendor_nama, b.rating_laporan_audit, 
 					b.fin_limit from tb_vendor a Join tb_fin_vendor b where a.VENDOR_ID=b.VENDOR_ID and a.vendor_id='$vendor_id'";
-		$resultQuery=mysqli_query($query);
-		while ($rows=mysqli_fetch_row($resultQuery)){ 
-			$data[] = $rows;
-		}
-		$current_vendor_id	= $data[0][0];
-		$current_vendor_nama= $data[0][1];
-		$rating_laporan_audit= $data[0][2];
-		$fin_limit= $data[0][3];
-		$err		=$_GET['err'];
-		$success	=$_GET['scs'];
-		
-		$query3 = "SELECT * FROM TB_FIN_VENDOR WHERE vendor_id='$vendor_id'";
-		$resultQuery3=mysqli_query($query3);
-		while ($rows=mysqli_fetch_row($resultQuery3)){ 
-			$data3[] = $rows;
-		}
-		$current_vendor_id	= $data3[0][0];
-		$current_rating_lap	= $data3[0][1];
-		$current_fin_limit	= $data3[0][2];
-		$current_fin_current= $data3[0][3];
-		$rating_pertama = $data3[0][1];
-		$fin_limit_pertama = $data3[0][2];
-		
+        $resultQuery=mysqli_query($mysqli, $query);
+        while ($rows=mysqli_fetch_row($resultQuery)) {
+            $data[] = $rows;
+        }
+        $current_vendor_id	= $data[0][0];
+        $current_vendor_nama= $data[0][1];
+        $rating_laporan_audit= $data[0][2];
+        $fin_limit= $data[0][3];
+        $err		=$_GET['err'];
+        $success	=$_GET['scs'];
+        
+        $query3 = "SELECT * FROM TB_FIN_VENDOR WHERE vendor_id='$vendor_id'";
+        $resultQuery3=mysqli_query($mysqli, $query3);
+        while ($rows=mysqli_fetch_row($resultQuery3)) {
+            $data3[] = $rows;
+        }
+        $current_vendor_id	= $data3[0][0];
+        $current_rating_lap	= $data3[0][1];
+        $current_fin_limit	= $data3[0][2];
+        $current_fin_current= $data3[0][3];
+        $rating_pertama = $data3[0][1];
+        $fin_limit_pertama = $data3[0][2];
+        
 
-	?>	
+    ?>	
 
 	<div class="wrapper row-offcanvas row-offcanvas-left">
 		<!-- Left side column. contains the logo and sidebar -->
@@ -90,22 +90,22 @@ include_once("lib/check.php");
                                               	<!--<select class="form-control m-b-10" name="var_rating" onchange="fetch_select(this.value);">
                                               		<option value="">- Pilih Rating -</option>
                                               		<?php
-                                              		/*$query2 = "SELECT rating_laporan_audit FROM TB_RATING where rating_laporan_audit!='-'";
-													$resultQuery2=mysqli_query($query2);
-													while ($rows=mysqli_fetch_row($resultQuery2)){ 
-														$data2[] = $rows;	
-													}
-													
-													for($a=0;$a<count($data2);$a++)
-													{
-														$current_rating = $data2[$a][0];
-													*/?>
+                                                      /*$query2 = "SELECT rating_laporan_audit FROM TB_RATING where rating_laporan_audit!='-'";
+                                                    $resultQuery2=mysqli_query($mysqli, $query2);
+                                                    while ($rows=mysqli_fetch_row($resultQuery2)){
+                                                        $data2[] = $rows;
+                                                    }
+
+                                                    for($a=0;$a<count($data2);$a++)
+                                                    {
+                                                        $current_rating = $data2[$a][0];
+                                                    */?>
 
 													<option value="<?php //echo $current_rating;?>"><?php //echo $current_rating;?></option>
 
-													<?php	
-													//}
-													?>
+													<?php
+                                                    //}
+                                                    ?>
                                                   	
                                               	</select>-->
                                           	</div>
@@ -140,15 +140,15 @@ include_once("lib/check.php");
 											
 										
 										
-										<?php 
-											if(isset($err)){
-										?>
+										<?php
+                                            if (isset($err)) {
+                                                ?>
 										<tr>
 											<td colspan='4'><font color="red"><?php echo $err; ?></font></td>
 										</tr>
 										<?php
-											}
-										?>
+                                            }
+                                        ?>
 
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10"><button type="submit" class="btn btn-info" onclick="document.getElementById('submitForm').submit()">Submit</button></div>

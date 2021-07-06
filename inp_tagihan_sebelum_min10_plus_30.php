@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include_once('lib/head.php');
 include_once("lib/check.php");
@@ -7,9 +7,9 @@ include_once("lib/check.php");
 <body class="skin-black">
 	
 <!--include file header-->
-<?php 
-	include("lib/header.php"); 
-	$kode_area = $_SESSION['area'];
+<?php
+    include("lib/header.php");
+    $kode_area = $_SESSION['area'];
 ?>	
 	
 	<div class="wrapper row-offcanvas row-offcanvas-left">
@@ -33,46 +33,44 @@ include_once("lib/check.php");
 										<option value="">- NO SPJ -</option>
 										
 										<?php
-									
-											/*$sql ="SELECT a.spj_no FROM tb_spj a, tb_progress b WHERE a.spj_no = b.spj_no and a.area_kode = $kode_area";
-											$resultQuery=mysqli_query($sql);
-											if(isset($resultQuery)){
-											$noRows = mysqli_num_rows($resultQuery);
-											if ($noRows > 0) {
-										?>	
-										<?php
-											//$data=select_spj_no($kode_area);
-											$data=select_progress($kode_area);
-											for($i=0;$i<count($data);$i++)
-											{
-												$current_spj_no = $data[$i][0];
-										?>
-											<option value='<?php echo $current_spj_no; ?>'><?php echo $current_spj_no;?></option>
+                                    
+                                            /*$sql ="SELECT a.spj_no FROM tb_spj a, tb_progress b WHERE a.spj_no = b.spj_no and a.area_kode = $kode_area";
+                                            $resultQuery=mysqli_query($sql);
+                                            if(isset($resultQuery)){
+                                            $noRows = mysqli_num_rows($resultQuery);
+                                            if ($noRows > 0) {
+                                        ?>
+                                        <?php
+                                            //$data=select_spj_no($kode_area);
+                                            $data=select_progress($kode_area);
+                                            for($i=0;$i<count($data);$i++)
+                                            {
+                                                $current_spj_no = $data[$i][0];
+                                        ?>
+                                            <option value='<?php echo $current_spj_no; ?>'><?php echo $current_spj_no;?></option>
 
-										<?php
-											}
-											}else{
-										?>	
-											<option value=''><font color="red"><?php echo "SPJ Belum ada progress";?></font></option>
-											<?php 
-												}
-											}*/
-											?>
+                                        <?php
+                                            }
+                                            }else{
+                                        ?>
+                                            <option value=''><font color="red"><?php echo "SPJ Belum ada progress";?></font></option>
+                                            <?php
+                                                }
+                                            }*/
+                                            ?>
 									</select>-->
 									<select class="form-control m-b-10" name="var_no_spj" id="spj_no" onChange="nilai_spj_add(this.value)" >
 										<option value="">- NO SPJ -</option>
 										<?php
-											//$data=select_spj_no($kode_area); eidel ubah
-											$data=select_spj_no_termin($kode_area);
-											for($i=0;$i<count($data);$i++)
-											{
-												$current_spj_no = $data[$i][0];
-										?>
-										<option value='<?php echo $current_spj_no; ?>'><?php echo $current_spj_no;?></option>
+                                            //$data=select_spj_no($kode_area); eidel ubah
+                                            $data=select_spj_no_termin($kode_area, $mysqli);
+                                            for ($i=0;$i<count($data);$i++) {
+                                                $current_spj_no = $data[$i][0]; ?>
+										<option value='<?php echo $current_spj_no; ?>'><?php echo $current_spj_no; ?></option>
 
 										<?php
-											}
-										?>
+                                            }
+                                        ?>
 									</select>
 									</div>
 								</div>

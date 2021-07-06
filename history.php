@@ -5,7 +5,7 @@
 	 
 	$no_spj = $_GET['id'];
 	$sql="select * from tb_progress a where a.spj_no ='$no_spj'";
-	$resultQuery=mysqli_query($sql);
+	$resultQuery=mysqli_query($mysqli, $sql);
 	while ($rows=mysqli_fetch_row($resultQuery)){ 
 		$data[] = $rows;
 	}
@@ -52,7 +52,7 @@
 					<tbody>
 						<?php
 							$sql = "SELECT COUNT(*) FROM tb_progress";
-							$result = mysqli_query($sql);
+							$result = mysqli_query($mysqli, $sql);
 							$r = mysqli_fetch_row($result);
 							$numrows = $r[0];
 

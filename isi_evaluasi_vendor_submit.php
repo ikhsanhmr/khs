@@ -22,25 +22,25 @@
 		
 		//$isi_score = $_POST["isi_score"];
 		
-		$simp1= mysqli_query("UPDATE tb_termin set evaluasi=1 where spj_no='$no_spj'");	
-		$simp11 = mysqli_query("UPDATE tb_spj set tgl_bastp='$tgl_bastp', pengawas_lap='$pengawas_lap' where spj_no='$no_spj'");
+		$simp1= mysqli_query($mysqli, "UPDATE tb_termin set evaluasi=1 where spj_no='$no_spj'");	
+		$simp11 = mysqli_query($mysqli, "UPDATE tb_spj set tgl_bastp='$tgl_bastp', pengawas_lap='$pengawas_lap' where spj_no='$no_spj'");
 		
 		foreach($isi_id as $i => $task) {
 		
-		$simp2= mysqli_query("INSERT INTO penilaian_nilai (id_kriteria, spj_no, nilai,bobot, id_deskripsi) 
+		$simp2= mysqli_query($mysqli, "INSERT INTO penilaian_nilai (id_kriteria, spj_no, nilai,bobot, id_deskripsi) 
 				VALUES ('$task', '$no_spj', '$isi_nilai[$i]', '$isi_bobot[$i]', '$isi_id_deskripsi[$i]')");
 		}
 		
 	if(($simp1==1)and($simp2==1)and($simp11==1)){
 				echo '<script language="javascript">alert("Evaluasi Berhasil Disimpan")</script>';
 				echo "<script language='javascript'>window.location = 'lihat_evaluasi_vendor.php?&no_spj=$no_spj'</script>";
-				mysqli_query("COMMIT");
+				mysqli_query($mysqli, "COMMIT");
 			}else{
 				echo '<script language="javascript">alert("Evaluasi Gagal Disimpan")</script>';
 				echo "<script language='javascript'>window.location = 'lihat_evaluasi_vendor.php?&no_spj=$no_spj'</script>";
 				/*echo ("INSERT INTO penilaian_nilai (id_kriteria, spj_no, nilai,bobot) 
 				VALUES ('$task', '$no_spj', '$isi_nilai[$i]', '$isi_bobot[$i]')");;*/
-				mysqli_query("ROLLBACK");
+				mysqli_query($mysqli, "ROLLBACK");
 			}
 	}
 ?>

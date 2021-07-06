@@ -6,7 +6,7 @@ $current_spj_no = $_GET['spj_no'] ;
 
 $query = "SELECT VENDOR_ID FROM tb_spj where spj_no = '$current_spj_no' ";
 //echo $query;
-$result = mysqli_query($query);
+$result = mysqli_query($mysqli, $query);
 
 $respon = array();
 while ($hasil = mysqli_fetch_row($result))

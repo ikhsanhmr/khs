@@ -9,7 +9,7 @@ $get_spj = $_GET['no_spj'];
 //$spj = isset($_GET['no_spj']) ? intval($_GET['no_spj']) : 0;
 //$area = isset($_GET['area']) ? intval($_GET['area']) : 0;
 $query = "SELECT skki_no FROM TB_SPJ WHERE SPJ_NO = '$get_spj'";
-$result = mysqli_query($query);
+$result = mysqli_query($mysqli, $query);
 $res = array();
 while ($rows = mysqli_fetch_array($result))
 {

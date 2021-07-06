@@ -11,9 +11,10 @@ $file_attach = 'uploads/KHS.pdf';
 
 //$spj = select_all_spj($no_spj);
 $q = "select * from tb_spj where spj_no = '$no_spj'";
-$getdata_query = mysqli_query($q);
-while($data_spj=mysqli_fetch_array($getdata_query))
-    { $spj_data[] = $data_spj; }
+$getdata_query = mysqli_query($mysqli, $q);
+while ($data_spj=mysqli_fetch_array($getdata_query)) {
+    $spj_data[] = $data_spj;
+}
 
 $area_kode 		= $spj_data[0]['AREA_KODE'];
 $vendor_id 		= $spj_data[0]['VENDOR_ID'];
@@ -21,14 +22,14 @@ $paket_jenis 	= $spj_data[0]['PAKET_JENIS'];
 $desk 			= $spj_data[0]['SPJ_DESKRIPSI'];
 $nilai 			= $spj_data[0]['SPJ_ADD_NILAI'];
 
-$paket = get_desk_paket($paket_jenis);
+$paket = get_desk_paket($paket_jenis, $mysqli);
 $paket_pekerjaan = $paket[0][0];
 
-$vendor = select_nama_vendor($vendor_id);
+$vendor = select_nama_vendor($vendor_id, $mysqli);
 $vendor_nama = $vendor[0][0];
 //echo $vendor_id;
 
-$area  = select_nama_area($area_kode);
+$area  = select_nama_area($area_kode, $mysqli);
 $area_nama = $area[0][0];
 
 $body="
@@ -69,5 +70,4 @@ Telah Dilakukan Pembuatan SPJ untuk : <br>
 Harap Segera Berkoordinasi dengan Area ".$area_nama." 
 ";
 
-mail_attachment($subject,$sender,$receiver, $body);
-?>
+mail_attachment($subject, $sender, $receiver, $body);

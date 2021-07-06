@@ -4,30 +4,30 @@
 		include_once('lib/head.php');
 		include_once("lib/check.php");
 		
-		define('DB_SERVER', 'localhost');
-		define('DB_USERNAME', 'root');
-		define('DB_PASSWORD', 'pln123');
-		define('DB_DATABASE', 'khs_production_2019');
-		$connection = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+		// define('DB_SERVER', 'localhost');
+		// define('DB_USERNAME', 'root');
+		// define('DB_PASSWORD', 'pln123');
+		// define('DB_DATABASE', 'khs_production_2019');
+		/ = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 		
 		$print_area = $_SESSION['area'];
 		
 		$vendor_id = $_GET['vendor_id'];
 
 		$query = "SELECT vendor_nama from tb_vendor where vendor_id=$vendor_id";
-		$show_data = mysqli_query($query);
+		$show_data = mysqli_query($mysqli, $query);
 		while ($row = mysqli_fetch_row($show_data)) {
 			$nama_vendor = $row[0];
 		}
 
 		$query_judul = "SELECT AREA_NAMA FROM `tb_area` WHERE AREA_KODE=$print_area";
-		$show_judul = mysqli_query($query_judul);
+		$show_judul = mysqli_query($mysqli, $query_judul);
 		while ($rowjudul = mysqli_fetch_row($show_judul)) {
 			$nama_area = $rowjudul[0];
 		}
 		
 		$query_manager = "SELECT NAMA_MANAGER FROM tb_spj WHERE AREA_KODE=$print_area GROUP BY NAMA_MANAGER LIMIT 1";
-		$show_manager = mysqli_query($query_manager);
+		$show_manager = mysqli_query($mysqli, $query_manager);
 		while ($rowmanager = mysqli_fetch_row($show_manager)) {
 			$nama_manager = $rowmanager[0];
 		}
@@ -56,7 +56,7 @@
 												<th>ADMINISTRASI</th><th>KOMUNIKASI DAN RESPONSIVENESS</th><th>JUMLAH</th>
 												<th>KETERANGAN</th></tr></thead><tbody>";
 									
-							/*$query = mysqli_query($connection,"
+							/*$query = mysqli_query($mysqli, "
 										SELECT B.spj_no, SUM(case when B.id_deskripsi = 1 then ((b.nilai*b.bobot)/10) end)MUTU, 
 										SUM(case when B.id_deskripsi = 2 then ((b.nilai*b.bobot)/10) end)SDM,
 										SUM(case when B.id_deskripsi = 5 then ((b.nilai*b.bobot)/10) end)Lingkungan,
@@ -66,7 +66,7 @@
 										and C.AREA_KODE=$print_area GROUP BY B.spj_no
 							");	*/
 							
-							$query = mysqli_query($connection,"
+							$query = mysqli_query($mysqli, "
 										SELECT B.spj_no, SUM(case when B.id_deskripsi = 1 then ((b.nilai*b.bobot)/10) end)MUTU, 
 										SUM(case when B.id_deskripsi = 2 then ((b.nilai*b.bobot)/10) end)SDM,
 										SUM(case when B.id_deskripsi = 5 then ((b.nilai*b.bobot)/10) end)Lingkungan,

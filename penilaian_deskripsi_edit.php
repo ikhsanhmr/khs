@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include_once('lib/head.php');
 include_once("lib/check.php");
@@ -6,10 +6,10 @@ include_once("lib/check.php");
 
 <body class="skin-black">
 	<!--include file header-->
-	<?php 
-		include("lib/header.php");
-		$area_kode=$_SESSION['area'];
-	?>	
+	<?php
+        include("lib/header.php");
+        $area_kode=$_SESSION['area'];
+    ?>	
 
 	<div class="wrapper row-offcanvas row-offcanvas-left">
 		<!-- Left side column. contains the logo and sidebar -->
@@ -28,18 +28,18 @@ include_once("lib/check.php");
 								<form class="form-horizontal tasi-form" method="post" action="penilaian_deskripsi_edit_submit.php">
 									<table class="table table-hover">
 										<?php
-											$id = $_GET['id'];
-											$query = "select * from penilaian_deskripsi where id_deskripsi = '$id'";
-											$resultQuery=mysqli_query($query);
-											while ($rows=mysqli_fetch_row($resultQuery)){ 
-												$data[] = $rows;
-											}
-											
-											$deskripsi 	= $data[0][1];
-											$bobot 		= $data[0][2];
-											$err		=$_GET['err'];
-											$success	=$_GET['scs'];
-											?>
+                                            $id = $_GET['id'];
+                                            $query = "select * from penilaian_deskripsi where id_deskripsi = '$id'";
+                                            $resultQuery=mysqli_query($mysqli, $query);
+                                            while ($rows=mysqli_fetch_row($resultQuery)) {
+                                                $data[] = $rows;
+                                            }
+                                            
+                                            $deskripsi 	= $data[0][1];
+                                            $bobot 		= $data[0][2];
+                                            $err		=$_GET['err'];
+                                            $success	=$_GET['scs'];
+                                            ?>
 
 										<tr>
 											<td>Deskripsi</td>

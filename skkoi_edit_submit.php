@@ -15,12 +15,12 @@
 	$username 	= $_SESSION['username'];
 	
 
-	mysqli_query("START TRANSACTION");
+	mysqli_query($mysqli, "START TRANSACTION");
 	$sql = "UPDATE TB_SKKO_I SET SKKI_JENIS = '$get_var_skki_jenis',AREA_KODE = $get_var_area_kode,
 			SKKI_NILAI = $get_var_skki_nilai,SKKI_TANGGAL = '$get_var_skki_tgl', REVISI='$get_var_skki_revisi',
 			KETERANGAN='$get_var_keterangan', update_by='$username', update_date='$today' WHERE SKKI_NO = '$get_var_skki_no'";
 	//echo $sql;
-	$query = mysqli_query($sql);
+	$query = mysqli_query($mysqli, $sql);
 	
 	if($get_var_skki_no==""){
 		echo '<script language="javascript">window.location = "skkoi_edit.php?err=NOMOR SKKI/O TIDAK BOLEH KOSONG&skki_no='.$get_var_skki_no.'"</script>';
@@ -34,11 +34,10 @@
 		echo '<script language="javascript">window.location = "skkoi_edit.php?err=TANGGAL SKKI/O TIDAK BOLEH KOSONG&skki_no='.$get_var_skki_no.'"</script>';
 	}else{
 		if($query==1){
-			mysqli_query("COMMIT");
+			mysqli_query($mysqli, "COMMIT");
 			
 		}else{
-			mysqli_query("ROLLBACK");
+			mysqli_query($mysqli, "ROLLBACK");
 		}
 		echo '<script language="javascript">window.location = "skkoi_edit.php?scs=EDIT SUKSES&skki_no='.$get_var_skki_no.'"</script>';
-	} 
-?>
+	}

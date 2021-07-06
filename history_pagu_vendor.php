@@ -6,7 +6,7 @@
 	$sql="SELECT A.VENDOR_ID, A.VENDOR_NAMA, b.paket_jenis, b.pagu_kontrak_sebelum_update, 
 		b.pagu_kontrak_setelah_update, b.file_bukti, b.update_by, b.update_date FROM tb_vendor a, 
 			tb_pagu_kontrak_update B WHERE a.VENDOR_ID=b.VENDOR_ID AND a.vendor_id = $id_vendor and b.paket_jenis=$paket_jenis";
-		$resultQuery=mysqli_query($sql);
+		$resultQuery=mysqli_query($mysqli, $sql);
 		while ($rows=mysqli_fetch_row($resultQuery)){ 
 		$data[] = $rows;
 		}
@@ -39,7 +39,7 @@
 														FROM tb_pagu_kontrak_update
 														WHERE VENDOR_ID = $id_vendor and paket_jenis=$paket_jenis";
 
-										$res_summary = mysqli_query($sql_summary);
+										$res_summary = mysqli_query($mysqli, $sql_summary);
 										$summary = mysqli_fetch_assoc($res_summary);
 										$jumlah_update = $summary['jumlah'];
 									
@@ -86,7 +86,7 @@
 							$sql1 = "SELECT count(vendor_id) as jumlah
 														FROM tb_fin_vendor_update
 														WHERE VENDOR_ID = $id_vendor and paket_jenis=$paket_jenis";
-							$result = mysqli_query($sql1);
+							$result = mysqli_query($mysqli, $sql1);
 							$r = mysqli_fetch_row($result);
 							$numrows = $r[0];
 
@@ -123,7 +123,7 @@
 							if(count($data)==0){
 								$sql="SELECT * from tb_vendor 
 									WHERE vendor_id = $id_vendor";
-								$resultQuery=mysqli_query($sql);
+								$resultQuery=mysqli_query($mysqli, $sql);
 								while ($rows=mysqli_fetch_row($resultQuery)){ 
 								$vendor_nama = $rows[1];
 								}

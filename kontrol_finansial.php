@@ -116,6 +116,8 @@ include_once("lib/GLOBAL_VAR.php");
                                         <?php
                                         //Table
                                         $area = $_GET['area'];
+                                        // var_dump($area);
+                                        // die;
                                         $vendor = $_GET['vendor'];
                                         $ftahun = isset($_GET['tahun']) ? $_GET['tahun'] : $FISCAL_YEAR;
 

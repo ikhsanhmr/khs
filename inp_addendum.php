@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include_once('lib/head.php');
 include_once("lib/check.php");
@@ -6,10 +6,10 @@ include_once("lib/function.php");
 ?>
 <body class="skin-black">
 	<!--include file header-->
-	<?php 
-		include("lib/header.php");
-		$area_kode=$_SESSION['area'];
-	?>	
+	<?php
+        include("lib/header.php");
+        $area_kode=$_SESSION['area'];
+    ?>	
 
 	<div class="wrapper row-offcanvas row-offcanvas-left">
 		<!-- Left side column. contains the logo and sidebar -->
@@ -32,13 +32,12 @@ include_once("lib/function.php");
 												<select class="form-control m-b-10" name="var_no_spj" id="spj">
 													  <option value="">-- SPJ --</option>
 														<?php
-															$data = get_spj_by_area($area_kode);
-															for($i=0;$i<count($data);$i++){
-																$current_spj_no = $data[$i][0];
-																?>
-																<option value='<?php echo $current_spj_no?>'><?php echo $current_spj_no;?></option><?php
-															}
-														?>
+                                                            $data = get_spj_by_area($area_kode, $mysqli);
+                                                            for ($i=0;$i<count($data);$i++) {
+                                                                $current_spj_no = $data[$i][0]; ?>
+																<option value='<?php echo $current_spj_no?>'><?php echo $current_spj_no; ?></option><?php
+                                                            }
+                                                        ?>
 												  </select>
 											</div>
 										</div>
@@ -99,14 +98,13 @@ include_once("lib/function.php");
 													  	
 													  	<option value="-">- (Pilih Jika SKKI/O Berubah)</option>
 														<?php
-															$data = get_all_skki($area_kode);
-															for($i=0;$i<count($data);$i++){
-																$current_skki = $data[$i]['SKKI_NO'];
-																$keterangan = $data[$i]['keterangan'];
-																?>
-																<option value='<?php echo $current_skki?>'><?php echo $current_skki. '  ' .$keterangan;?></option><?php
-															}
-														?>
+                                                            $data = get_all_skki($area_kode, $mysqli);
+                                                            for ($i=0;$i<count($data);$i++) {
+                                                                $current_skki = $data[$i]['SKKI_NO'];
+                                                                $keterangan = $data[$i]['keterangan']; ?>
+																<option value='<?php echo $current_skki?>'><?php echo $current_skki. '  ' .$keterangan; ?></option><?php
+                                                            }
+                                                        ?>
 												  </select>
 											</div>
 										</div>
@@ -135,7 +133,7 @@ include_once("lib/function.php");
 										<div class="form-group">	
 											<label class="col-sm-2 col-sm-2 control-label" name="var_deskripsi">Deskripsi</label>
 												<div class="col-sm-3">
-													<textarea style="width:" rows="3" cols="125" name="var_deskripsi" required></textarea>
+													<textarea rows="3" cols="125" name="var_deskripsi" required></textarea>
 												</div>
 										</div>
 										

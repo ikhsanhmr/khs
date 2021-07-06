@@ -21,7 +21,7 @@ $query = "SELECT A.SPJ_NO, B.VENDOR_NAMA,
 			AND A.SPJ_NO = '$get_spj'
 			AND A.AREA_KODE = '$get_area'
 			";
-$result = mysqli_query($query);
+$result = mysqli_query($mysqli, $query);
 $res = array();
 while ($rows = mysqli_fetch_array($result))
 {

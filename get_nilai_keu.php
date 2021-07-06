@@ -5,7 +5,7 @@ include_once("lib/function.php");
 session_start();
 $current_spj_no = $_GET['spj_no'];
 
-$respon = select_nilai_add_keu($current_spj_no);
+$respon = select_nilai_add_keu($current_spj_no, $mysqli);
 //echo 'dhaifina'.$respon;
 echo json_encode($respon);
 

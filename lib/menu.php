@@ -43,51 +43,51 @@
 <?php
     //session_start();
     $curr_page = strtolower($_SERVER['REQUEST_URI']);
-    $pages = array("/khs_2020/kontrol_finansial.php", //0
-                        "/khs_2020/kecepatan_kerja.php",//1
-                        "/khs_2020/penyerapan_anggaran.php",//2
-                        "/khs_2020/seleksi_vendor.php",//3
-                        "/khs_2020/inp_progress_kerja.php",//4
-                        "/khs_2020/inp_tagihan.php",//5
-                        "/khs_2020/inp_addendum.php",//6
-                        "/khs_2020/approval.php",//7
-                        "/khs_2020/dl_spj.php",//8
-                        "/khs_2020/dashboard.php",//9
-                        "/khs_2020/spj_view.php",//10
-                        "/khs_2020/spj_non_khs.php",//11
-                        "/khs_2020/skkoi_view.php",//12
-                        "/khs_2020/fin_vendor_view.php",//13
-                        "/khs_2020/list_amandemen.php",//14
-                        "/khs_2020/perijinan.php", //15
-                        "/khs_2020/ba_survey.php", //16
-                        "/khs_2020/skrd_input.php",//17
-                        "/khs_2020/bayar_retribusi.php", //18
-                        "/khs_2020/monitoring_perijinan.php",//19
-                        "/khs_2020/penyerahan_dok.php", //20
-                        "/khs_2020/upload_skki.php", //21
-                        "/khs_2020/spj_view.php", //22
-                        "/khs_2020/inp_user.php",//23
-                        "/khs_2020/inp_user_all.php",//24
-                        "/khs_2020/monitoring_target_realisasi.php",//25
-                        "/khs_2020/history_pembayaran.php",//26
-                        "/khs_2020/edit_finansial_vendor.php",//27
-                        "/khs_2020/request_edit_finansial_vendor.php",//28
-                        "/khs_2020/edit_pagu_vendor.php",//29
-                        "/khs_2020/edit_progress.php",//30
-                        "/khs_2020/vendor_khs.php",//31
-                        "/khs_2020/penilaian_deskripsi.php",//32
-                        "/khs_2020/penilaian_kriteria.php",//33
-                        "/khs_2020/evaluasi_vendor.php",//34
-                        "/khs_2020/verifikasi_evaluasi_mb.php",//35
-                        "/khs_2020/verifikasi_evaluasi_mup3.php",//36
-                        "/khs_2020/rekapitulasi_evaluasi.php",//37
-                        "/khs_2020/rekapitulasi_evaluasi_global.php",//38
-                        "/khs_2020/master_paket.php",//39
-                        "/khs_2020/master_vendor.php",//40
-                        "/khs_2020/master_pagu.php",//41
-                        "/khs_2020/master_finansial.php",//42
-                        "/khs_2020/master_mapping.php"//43
-                        );
+    $pages = array("/khs/kontrol_finansial.php", //0
+                                        "/khs/kecepatan_kerja.php",//1
+                                        "/khs/penyerapan_anggaran.php",//2
+                                        "/khs/seleksi_vendor.php",//3
+                                        "/khs/inp_progress_kerja.php",//4
+                                        "/khs/inp_tagihan.php",//5
+                                        "/khs/inp_addendum.php",//6
+                                        "/khs/approval.php",//7
+                                        "/khs/dl_spj.php",//8
+                                        "/khs/dashboard.php",//9
+                                        "/khs/spj_view.php",//10
+                                        "/khs/spj_non_khs.php",//11
+                                        "/khs/skkoi_view.php",//12
+                                        "/khs/fin_vendor_view.php",//13
+                                        "/khs/list_amandemen.php",//14
+                                        "/khs/perijinan.php", //15
+                                        "/khs/ba_survey.php", //16
+                                        "/khs/skrd_input.php",//17
+                                        "/khs/bayar_retribusi.php", //18
+                                        "/khs/monitoring_perijinan.php",//19
+                                        "/khs/penyerahan_dok.php", //20
+                                        "/khs/upload_skki.php", //21
+                                        "/khs/spj_view.php", //22
+                                        "/khs/inp_user.php",//23
+                                        "/khs/inp_user_all.php",//24
+                                        "/khs/monitoring_target_realisasi.php",//25
+                                        "/khs/history_pembayaran.php",//26
+                                        "/khs/edit_finansial_vendor.php",//27
+                                        "/khs/request_edit_finansial_vendor.php",//28
+                                        "/khs/edit_pagu_vendor.php",//29
+                                        "/khs/edit_progress.php",//30
+                                        "/khs/vendor_khs.php",//31
+                                        "/khs/penilaian_deskripsi.php",//32
+                                        "/khs/penilaian_kriteria.php",//33
+                                        "/khs/evaluasi_vendor.php",//34
+                                        "/khs/verifikasi_evaluasi_mb.php",//35
+                                        "/khs/verifikasi_evaluasi_mup3.php",//36
+                                        "/khs/rekapitulasi_evaluasi.php",//37
+                                        "/khs/rekapitulasi_evaluasi_global.php",//38
+                                        "/khs/master_paket.php",//39
+                                        "/khs/master_vendor.php",//40
+                                        "/khs/master_pagu.php",//41
+                                        "/khs/master_finansial.php",//42
+                                        "/khs/master_mapping.php"//43
+                                        );
     $role = $_SESSION['role'];
     $vis=[];
     $cls=[];

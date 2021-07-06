@@ -63,7 +63,7 @@ include_once("lib/check.php"); ?>
                                         // number of rows to show per page
                                         $rowsperpage = 10;
                                         // find out total pages
-                                        $totalpages = ceil($numrows / $rowsperpage);
+                                        $totalpages = ceil($rowsperpage);
 
                                         // get the current page or set a default
                                         if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {

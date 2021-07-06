@@ -1,34 +1,34 @@
-<?php 
-session_start();	
+<?php
+session_start();
 include_once('lib/head.php');
 include_once("lib/check.php");
 ?>
 
-<?php 
-		$spj_no	= $_GET['spj_no'];
-		$area_kode	= $_GET['area_kode'];
+<?php
+        $spj_no	= $_GET['spj_no'];
+        $area_kode	= $_GET['area_kode'];
 
-		//$query = "select * from tb_vendor where vendor_id='$vendor_id' ";
-		$query = "SELECT a.spj_no, a.PROGRESS_VALUE, a.REALISASI, a.progress_date, 
+        //$query = "select * from tb_vendor where vendor_id='$vendor_id' ";
+        $query = "SELECT a.spj_no, a.PROGRESS_VALUE, a.REALISASI, a.progress_date, 
 				a.PROGRESS_PENGAWAS, a.progress_notes from tb_progress a join tb_spj b on a.SPJ_NO =b.SPJ_NO 
 				and b.AREA_KODE=$area_kode and a.SPJ_NO='$spj_no'";
-		$resultQuery=mysqli_query($query);
-		while ($rows=mysqli_fetch_row($resultQuery)){ 
-			$data[] = $rows;
-		}
-		$spj_no	= $data[0][0];
-		$progress= $data[0][1];
-		$realisasi= $data[0][2];
-		$progress_date= $data[0][3];
-		$pengawas		=$data[0][4];
-		$notes		=$data[0][5];
+        $resultQuery=mysqli_query($mysqli, $query);
+        while ($rows=mysqli_fetch_row($resultQuery)) {
+            $data[] = $rows;
+        }
+        $spj_no	= $data[0][0];
+        $progress= $data[0][1];
+        $realisasi= $data[0][2];
+        $progress_date= $data[0][3];
+        $pengawas		=$data[0][4];
+        $notes		=$data[0][5];
 
 ?>	
 
 <body class="skin-black">
 	<!--include file header-->
-	<?php include("lib/header.php"); 
-	$kode_area = $_SESSION['area'];?>	
+	<?php include("lib/header.php");
+    $kode_area = $_SESSION['area'];?>	
 		
 	<div class="wrapper row-offcanvas row-offcanvas-left">
     <!-- Left side column. contains the logo and sidebar -->
@@ -69,10 +69,10 @@ include_once("lib/check.php");
 											<select class="form-control m-b-10" name="var_progress" id="var_progress">
 												<option value=''>-pilih progress-</option>
 												<?php
-													for($i=5;$i<=90;$i+=5){
-														echo "<option value='$i'>$i%</option>";
-													}
-												?>
+                                                    for ($i=5;$i<=90;$i+=5) {
+                                                        echo "<option value='$i'>$i%</option>";
+                                                    }
+                                                ?>
 												<option value='100'>100%</option>
 												<option value='130'>130%</option>
 											</select>

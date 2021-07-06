@@ -19,7 +19,7 @@ $(document).ready(function() {
 } );
 
 </script>
-<?php 
+<?php
 session_start();
 include_once('lib/head.php');
 include_once("lib/check.php");
@@ -74,55 +74,54 @@ include_once("lib/check.php");
 
 							<tbody>
 								<?php
-									$no_spj = $_GET['no_spj'];
-									$area = $_SESSION['area'];
-									//echo $area;
-									if ($no_spj == ""){
-										$query = "SELECT * FROM TB_ADDENDUM A, tb_spj b
+                                    $no_spj = $_GET['no_spj'];
+                                    $area = $_SESSION['area'];
+                                    //echo $area;
+                                    if ($no_spj == "") {
+                                        $query = "SELECT * FROM TB_ADDENDUM A, tb_spj b
 											  WHERE b.spj_no = a.spj_no
 											  and b.AREA_KODE = $area 
 											  and A.ADDENDUM_NO NOT like '%2020a%'";
-									}else{
-										$query = "SELECT * FROM TB_ADDENDUM A, tb_spj b
+                                    } else {
+                                        $query = "SELECT * FROM TB_ADDENDUM A, tb_spj b
 											  WHERE a.SPJ_NO LIKE '%$no_spj%' 
 											  and b.spj_no = a.spj_no
 											  and b.AREA_KODE = $area 
-											  and A.ADDENDUM_NO NOT like '%2020a%'";										
-									}
+											  and A.ADDENDUM_NO NOT like '%2020a%'";
+                                    }
 
 
-									$resultQuery=mysqli_query($query);
-									while ($rows=mysqli_fetch_row($resultQuery)){ 
-										$data[] = $rows;
-									}
+                                    $resultQuery=mysqli_query($mysqli, $query);
+                                    while ($rows=mysqli_fetch_row($resultQuery)) {
+                                        $data[] = $rows;
+                                    }
 
-									$nomor=1;
-									for ($i=0;$i<count($data);$i++){
-										$current_no_add 		= $data[$i][0];
-										$current_no_spj	 		= $data[$i][1];
-										$current_nilai_add		= $data[$i][2]; 
-										//$current_tgl_akhir_add	= $data[$i][15];
-										$current_tgl_input_add	= $data[$i][5];
-										$current_tgl_add_add	= $data[$i][7];
-										$current_tgl_akhir_add	= $data[$i][3];
-										$current_target_volume_add	= $data[$i][23];
-										$current_deskripsi_add	= $data[$i][4];
+                                    $nomor=1;
+                                    for ($i=0;$i<count($data);$i++) {
+                                        $current_no_add 		= $data[$i][0];
+                                        $current_no_spj	 		= $data[$i][1];
+                                        $current_nilai_add		= $data[$i][2];
+                                        //$current_tgl_akhir_add	= $data[$i][15];
+                                        $current_tgl_input_add	= $data[$i][5];
+                                        $current_tgl_add_add	= $data[$i][7];
+                                        $current_tgl_akhir_add	= $data[$i][3];
+                                        $current_target_volume_add	= $data[$i][23];
+                                        $current_deskripsi_add	= $data[$i][4];
 
-									echo "<tr>";
-									echo "<td></td>";
-									echo "<td>".$current_no_spj."</td>";
-									echo "<td>".$current_no_add."</td>";
-									echo "<td>".$current_tgl_input_add."</td>";
-									echo "<td>".$current_tgl_add_add."</td>";
-									echo "<td>".$current_tgl_akhir_add."</td>";
-									echo "<td>".$current_nilai_add."</td>";
-									echo "<td>".$current_target_volume_add."</td>";
-									echo "<td>".$current_deskripsi_add."</td>";
-									echo "</tr>";
+                                        echo "<tr>";
+                                        echo "<td></td>";
+                                        echo "<td>".$current_no_spj."</td>";
+                                        echo "<td>".$current_no_add."</td>";
+                                        echo "<td>".$current_tgl_input_add."</td>";
+                                        echo "<td>".$current_tgl_add_add."</td>";
+                                        echo "<td>".$current_tgl_akhir_add."</td>";
+                                        echo "<td>".$current_nilai_add."</td>";
+                                        echo "<td>".$current_target_volume_add."</td>";
+                                        echo "<td>".$current_deskripsi_add."</td>";
+                                        echo "</tr>";
+                                    }
 
-									}
-
-								?>
+                                ?>
 							</tbody>
 						</table>
 					</div>

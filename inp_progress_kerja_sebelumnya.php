@@ -1,13 +1,13 @@
-<?php 
-session_start();	
+<?php
+session_start();
 include_once('lib/head.php');
 include_once("lib/check.php");
 ?>
 
 <body class="skin-black">
 	<!--include file header-->
-	<?php include("lib/header.php"); 
-	$kode_area = $_SESSION['area'];?>	
+	<?php include("lib/header.php");
+    $kode_area = $_SESSION['area'];?>	
 		
 	<div class="wrapper row-offcanvas row-offcanvas-left">
     <!-- Left side column. contains the logo and sidebar -->
@@ -29,14 +29,13 @@ include_once("lib/check.php");
 											<select class="form-control m-b-10" name="var_no_spj" id="spj_no">
 												<option value="">- NO SPJ -</option>
 													<?php
-														$data=select_spj_no($kode_area);
-														for($i=0;$i<count($data);$i++){
-															$current_spj_no = $data[$i][0];
-													?>
-												<option value='<?php echo $current_spj_no; ?>'><?php echo $current_spj_no;?></option>
+                                                        $data=select_spj_no($kode_area, $mysqli);
+                                                        for ($i=0;$i<count($data);$i++) {
+                                                            $current_spj_no = $data[$i][0]; ?>
+												<option value='<?php echo $current_spj_no; ?>'><?php echo $current_spj_no; ?></option>
 													<?php
-														}
-													?>
+                                                        }
+                                                    ?>
 												</select>
 										</div>
 									</div>
@@ -47,10 +46,10 @@ include_once("lib/check.php");
 											<!--<input type="text" class="form-control" name="var_progress">-->
 											<select class="form-control m-b-10" name="var_progress">
 												<?php
-													for($i=5;$i<=100;$i+=5){
-														echo "<option value='$i'>$i%</option>";
-													}
-												?>
+                                                    for ($i=5;$i<=100;$i+=5) {
+                                                        echo "<option value='$i'>$i%</option>";
+                                                    }
+                                                ?>
 											</select>
 										</div>
 									</div>
@@ -82,7 +81,7 @@ include_once("lib/check.php");
 									<div class="form-group">	
 										<label class="col-sm-2 col-sm-2 control-label">Komentar</label>
 										<div class="col-sm-3">
-											<textarea style="width:" rows="3" name="var_deskripsi" required></textarea>
+											<textarea rows="3" name="var_deskripsi" required></textarea>
 										</div>
 									</div>
 										
